@@ -1,0 +1,113 @@
+[13/Aug/2026 14:54:00] "OPTIONS /api/auth/login/ HTTP/1.1" 200 0
+[13/Aug/2026 14:54:00,356] - Broken pipe from ('127.0.0.1', 56751)
+[13/Aug/2026 14:54:09] "OPTIONS /api/auth/login/ HTTP/1.1" 200 0
+C:\Users\isham\AppData\Local\Programs\Python\Python314\Lib\site-packages\rest_framework\pagination.py:198: UnorderedObjectListWarning: Pagination may yield inconsistent results with an unordered object_list: <class 'skillnet.models.Course'> QuerySet.
+  paginator = self.django_paginator_class(queryset, page_size)
+[13/Aug/2026 15:08:30] "GET /api/jobs/ HTTP/1.1" 200 1408
+[13/Aug/2026 15:08:30] "GET /api/courses/ HTTP/1.1" 200 959
+[13/Aug/2026 15:08:30] "GET /api/jobs/ HTTP/1.1" 200 1408
+[13/Aug/2026 15:08:30] "GET /api/courses/ HTTP/1.1" 200 959
+[13/Aug/2026 15:08:34] "GET /api/courses/ HTTP/1.1" 200 959
+[13/Aug/2026 15:08:34] "GET /api/jobs/ HTTP/1.1" 200 1408
+[13/Aug/2026 15:08:34] "GET /api/courses/ HTTP/1.1" 200 959
+[13/Aug/2026 15:08:34] "GET /api/jobs/ HTTP/1.1" 200 1408
+[13/Aug/2026 15:08:36] "GET /api/courses/ HTTP/1.1" 200 959
+[13/Aug/2026 15:08:36] "GET /api/jobs/ HTTP/1.1" 200 1408
+[13/Aug/2026 15:08:36] "GET /api/courses/ HTTP/1.1" 200 959
+[13/Aug/2026 15:08:36] "GET /api/jobs/ HTTP/1.1" 200 1408
+[13/Aug/2026 15:08:54] "GET /api/courses/ HTTP/1.1" 200 959
+[13/Aug/2026 15:08:54] "GET /api/jobs/ HTTP/1.1" 200 1408
+[13/Aug/2026 15:08:54] "GET /api/courses/ HTTP/1.1" 200 959
+[13/Aug/2026 15:08:54] "GET /api/jobs/ HTTP/1.1" 200 1408
+[13/Aug/2026 15:09:50] "OPTIONS /api/auth/login/ HTTP/1.1" 200 0
+C:\Users\isham\AppData\Local\Programs\Python\Python314\Lib\site-packages\jwt\api_jwt.py:147: InsecureKeyLengthWarning: The HMAC key is 25 bytes long, which is below the minimum recommended length of 32 bytes for SHA256. See RFC 7518 Section 3.2.
+  return self._jws.encode(
+[13/Aug/2026 15:09:50] "POST /api/auth/login/ HTTP/1.1" 200 717
+[13/Aug/2026 15:11:00] "GET /api/courses/ HTTP/1.1" 200 959
+[13/Aug/2026 15:11:00] "GET /api/jobs/ HTTP/1.1" 200 1408
+[13/Aug/2026 15:11:00] "GET /api/courses/ HTTP/1.1" 200 959
+[13/Aug/2026 15:11:00] "GET /api/jobs/ HTTP/1.1" 200 1408
+[13/Aug/2026 15:11:31] "GET /api/jobs/ HTTP/1.1" 200 1408
+[13/Aug/2026 15:11:31] "GET /api/courses/ HTTP/1.1" 200 959
+[13/Aug/2026 15:11:31,635] - Broken pipe from ('127.0.0.1', 55466)
+[13/Aug/2026 15:11:57] "GET /api/jobs/ HTTP/1.1" 200 1408
+[13/Aug/2026 15:11:57] "GET /api/courses/ HTTP/1.1" 200 959
+[13/Aug/2026 15:11:58] "GET /api/courses/ HTTP/1.1" 200 959
+[13/Aug/2026 15:11:58] "GET /api/jobs/ HTTP/1.1" 200 1408
+[13/Aug/2026 15:12:05] "GET /api/jobs/ HTTP/1.1" 200 1408
+[13/Aug/2026 15:12:05,450] - Broken pipe from ('127.0.0.1', 55491)
+[13/Aug/2026 15:46:24] "GET /api/jobs/ HTTP/1.1" 200 1408
+[13/Aug/2026 15:46:24] "GET /api/courses/ HTTP/1.1" 200 959
+[13/Aug/2026 15:46:24] "GET /api/jobs/ HTTP/1.1" 200 1408
+[13/Aug/2026 15:46:24] "GET /api/courses/ HTTP/1.1" 200 959
+[13/Aug/2026 19:12:17,039] - Broken pipe from ('127.0.0.1', 51722)
+[13/Aug/2026 19:12:17,092] - Broken pipe from ('127.0.0.1', 54827)
+[13/Aug/2026 19:12:18] "GET /api/jobs/ HTTP/1.1" 200 1408
+[13/Aug/2026 19:12:18] "GET /api/courses/ HTTP/1.1" 200 959
+[13/Aug/2026 19:12:18] "GET /api/jobs/ HTTP/1.1" 200 1408
+[13/Aug/2026 19:12:18] "GET /api/courses/ HTTP/1.1" 200 959
+[13/Aug/2026 19:12:57] "GET /api/courses/ HTTP/1.1" 200 959
+[13/Aug/2026 19:12:57] "GET /api/jobs/ HTTP/1.1" 200 1408
+[13/Aug/2026 19:12:58] "GET /api/courses/ HTTP/1.1" 200 959
+[13/Aug/2026 19:12:58] "GET /api/jobs/ HTTP/1.1" 200 1408
+[13/Aug/2026 20:52:53] "GET /api/jobs/ HTTP/1.1" 200 1408
+[13/Aug/2026 20:52:53] "GET /api/courses/ HTTP/1.1" 200 959
+[13/Aug/2026 20:52:53] "GET /api/jobs/ HTTP/1.1" 200 1408
+[13/Aug/2026 20:52:53] "GET /api/courses/ HTTP/1.1" 200 959
+[13/Aug/2026 20:58:02] "OPTIONS /api/auth/login/ HTTP/1.1" 200 0
+Unauthorized: /api/auth/login/
+[13/Aug/2026 20:58:03] "POST /api/auth/login/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/login/
+[13/Aug/2026 20:58:07] "POST /api/auth/login/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/login/
+[13/Aug/2026 20:58:19] "POST /api/auth/login/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/login/
+[13/Aug/2026 21:01:16] "POST /api/auth/login/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/login/
+[13/Aug/2026 21:02:47] "POST /api/auth/login/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/login/
+[13/Aug/2026 21:02:49] "POST /api/auth/login/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/login/
+[13/Aug/2026 21:02:50] "POST /api/auth/login/ HTTP/1.1" 401 90
+[13/Aug/2026 21:08:50] "GET /api/courses/ HTTP/1.1" 200 959
+[13/Aug/2026 21:08:50] "GET /api/jobs/ HTTP/1.1" 200 1408
+[13/Aug/2026 21:08:50] "GET /api/courses/ HTTP/1.1" 200 959
+[13/Aug/2026 21:08:50] "GET /api/jobs/ HTTP/1.1" 200 1408
+[13/Aug/2026 21:13:44] "GET /api/jobs/ HTTP/1.1" 200 1408
+[13/Aug/2026 21:13:44] "GET /api/jobs/ HTTP/1.1" 200 1408
+[13/Aug/2026 21:13:52] "GET /api/courses/ HTTP/1.1" 200 959
+[13/Aug/2026 21:13:52] "GET /api/jobs/ HTTP/1.1" 200 1408
+[13/Aug/2026 21:13:52] "GET /api/courses/ HTTP/1.1" 200 959
+[13/Aug/2026 21:13:52] "GET /api/jobs/ HTTP/1.1" 200 1408
+[13/Aug/2026 21:14:00] "GET /api/courses/ HTTP/1.1" 200 959
+[13/Aug/2026 21:14:00] "GET /api/jobs/ HTTP/1.1" 200 1408
+[13/Aug/2026 21:14:00] "GET /api/courses/ HTTP/1.1" 200 959
+[13/Aug/2026 21:14:00] "GET /api/jobs/ HTTP/1.1" 200 1408
+[13/Aug/2026 21:14:06] "GET /api/jobs/1/ HTTP/1.1" 200 1356
+[13/Aug/2026 21:14:06] "GET /api/jobs/1/ HTTP/1.1" 200 1356
+Unauthorized: /api/auth/login/
+[13/Aug/2026 21:14:16] "POST /api/auth/login/ HTTP/1.1" 401 90
+[13/Aug/2026 21:14:19] "GET /api/courses/ HTTP/1.1" 200 959
+[13/Aug/2026 21:14:19] "GET /api/jobs/ HTTP/1.1" 200 1408
+[13/Aug/2026 21:14:19] "GET /api/courses/ HTTP/1.1" 200 959
+[13/Aug/2026 21:14:19] "GET /api/jobs/ HTTP/1.1" 200 1408
+[13/Aug/2026 21:15:15] "GET /api/jobs/ HTTP/1.1" 200 1408
+[13/Aug/2026 21:15:15] "GET /api/jobs/ HTTP/1.1" 200 1408
+[13/Aug/2026 21:15:16] "GET /api/courses/ HTTP/1.1" 200 959
+[13/Aug/2026 21:15:16] "GET /api/courses/ HTTP/1.1" 200 959
+[13/Aug/2026 21:15:24] "GET /api/courses/1/ HTTP/1.1" 200 907
+[13/Aug/2026 21:15:24] "GET /api/courses/1/ HTTP/1.1" 200 907
+Unauthorized: /api/courses/1/enroll/
+[13/Aug/2026 21:15:29] "POST /api/courses/1/enroll/ HTTP/1.1" 401 85
+Unauthorized: /api/courses/1/enroll/
+[13/Aug/2026 21:15:31] "POST /api/courses/1/enroll/ HTTP/1.1" 401 85
+[13/Aug/2026 21:15:36] "GET /api/courses/ HTTP/1.1" 200 959
+[13/Aug/2026 21:15:36] "GET /api/courses/ HTTP/1.1" 200 959
+[13/Aug/2026 21:15:37] "GET /api/jobs/ HTTP/1.1" 200 1408
+[13/Aug/2026 21:15:37] "GET /api/jobs/ HTTP/1.1" 200 1408
+[13/Aug/2026 21:15:39] "GET /api/courses/ HTTP/1.1" 200 959
+[13/Aug/2026 21:15:39] "GET /api/jobs/ HTTP/1.1" 200 1408
+[13/Aug/2026 21:15:39] "GET /api/courses/ HTTP/1.1" 200 959
+[13/Aug/2026 21:15:39] "GET /api/jobs/ HTTP/1.1" 200 1408
+Unauthorized: /api/auth/login/
+[13/Aug/2026 21:16:24] "POST /api/auth/login/ HTTP/1.1" 401 90

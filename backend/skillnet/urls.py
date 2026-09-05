@@ -1,0 +1,6 @@
+from django.urls import include,path
+from rest_framework.routers import DefaultRouter
+from rest_framework_simplejwt.views import TokenRefreshView
+from . import views
+router=DefaultRouter();router.register('skills',views.SkillViewSet);router.register('jobs',views.JobViewSet,basename='job');router.register('applications',views.ApplicationViewSet,basename='application');router.register('quizzes',views.QuizViewSet);router.register('courses',views.CourseViewSet,basename='course');router.register('enrollments',views.EnrollmentViewSet,basename='enrollment');router.register('conversations',views.ConversationViewSet,basename='conversation');router.register('notifications',views.NotificationViewSet,basename='notification');router.register('admin/users',views.AdminUserViewSet,basename='admin-user');router.register('admin/moderation-reports',views.ModerationReportViewSet,basename='moderation-report')
+urlpatterns=[path('auth/login/',views.LoginView.as_view()),path('auth/register/',views.RegisterView.as_view()),path('auth/refresh/',TokenRefreshView.as_view()),path('auth/logout/',views.logout_view),path('users/profile/',views.ProfileView.as_view()),path('recommendations/',views.recommendations),path('payments/checkout/',views.checkout),path('admin/analytics/',views.analytics),path('',include(router.urls))]
