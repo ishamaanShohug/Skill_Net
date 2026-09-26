@@ -47,14 +47,57 @@ class QuestionSerializer(serializers.ModelSerializer):
 class QuizSerializer(serializers.ModelSerializer):
     questions=QuestionSerializer(many=True,read_only=True);job_title=serializers.CharField(source='job.title',read_only=True)
     class Meta:model=Quiz;fields='__all__';read_only_fields=['job']
+class EmployerQuestionSerializer(serializers.ModelSerializer):
+    options=EmployerOptionSerializer(many=True,read_only=True);skill=SkillSerializer(read_only=True)
+    class Meta:model=Question;fields=['id','text','skill','marks','order','options']
+class EmployerQuizSerializer(serializers.ModelSerializer):
+    questions=EmployerQuestionSerializer(many=True,read_only=True);job_title=serializers.CharField(source='job.title',read_only=True)
+    class Meta:model=Quiz;fields='__all__'
+class AnswerOptionWriteSerializer(serializers.ModelSerializer):
+    class Meta:model=AnswerOption;fields=['text','is_correct']
+class QuestionWriteSerializer(serializers.ModelSerializer):
+    options=AnswerOptionWriteSerializer(many=True)
+    class Meta:model=Question;fields=['text','skill','marks','options']
+class QuizWriteSerializer(serializers.ModelSerializer):
+    questions=QuestionWriteSerializer(many=True)
+    class Meta:model=Quiz;fields=['id','job','title','description','duration_minutes','pass_percentage','max_attempts','is_active','questions']
+    def validate_job(self,value):
+        request=self.context.get('request')
+        if request and value.employer.user!=request.user:raise serializers.ValidationError("You can only attach an assessment to your own job.")
+        return value
+    def validate_questions(self,value):
+        if not value:raise serializers.ValidationError('Add at least one question.')
+        for q in value:
+            options=q.get('options') or []
+            if len(options)<2:raise serializers.ValidationError('Each question needs at least two answer options.')
+            if not any(o.get('is_correct') for o in options):raise serializers.ValidationError('Each question needs one option marked correct.')
+        return value
+    def create(self,validated_data):
+        questions=validated_data.pop('questions');quiz=Quiz.objects.create(**validated_data);self._save_questions(quiz,questions);return quiz
+    def update(self,instance,validated_data):
+        questions=validated_data.pop('questions',None)
+        for field,value in validated_data.items():setattr(instance,field,value)
+        instance.save()
+        if questions is not None:instance.questions.all().delete();self._save_questions(instance,questions)
+        return instance
+    def _save_questions(self,quiz,questions):
+        for order,q in enumerate(questions):
+            options=q.pop('options');question=Question.objects.create(quiz=quiz,order=order,**q)
+            for opt_order,opt in enumerate(options):AnswerOption.objects.create(question=question,order=opt_order,**opt)
 class StatusHistorySerializer(serializers.ModelSerializer):
     changed_by=UserSerializer(read_only=True)
     class Meta:model=ApplicationStatusHistory;fields='__all__'
 class ApplicationSerializer(serializers.ModelSerializer):
-    job=JobSerializer(read_only=True);job_id=serializers.PrimaryKeyRelatedField(source='job',queryset=Job.objects.filter(status=Job.Status.PUBLISHED),write_only=True,required=False);candidate=UserSerializer(read_only=True);status_history=StatusHistorySerializer(many=True,read_only=True);quiz_score=serializers.SerializerMethodField()
+    job=JobSerializer(read_only=True);job_id=serializers.PrimaryKeyRelatedField(source='job',queryset=Job.objects.filter(status=Job.Status.PUBLISHED),write_only=True,required=False);candidate=UserSerializer(read_only=True);status_history=StatusHistorySerializer(many=True,read_only=True);quiz_score=serializers.SerializerMethodField();candidate_profile=serializers.SerializerMethodField();conversation_id=serializers.SerializerMethodField()
     class Meta:model=Application;fields='__all__';read_only_fields=['candidate','status']
     def get_quiz_score(self,obj):
         attempt=obj.quiz_attempts.filter(submitted_at__isnull=False).order_by('-created_at').first();return float(attempt.percentage) if attempt else None
+    def get_candidate_profile(self,obj):
+        try:profile=obj.candidate.seeker_profile
+        except SeekerProfile.DoesNotExist:return None
+        return SeekerProfileSerializer(profile).data
+    def get_conversation_id(self,obj):
+        conversation=obj.conversations.first();return conversation.id if conversation else None
 class ModuleSerializer(serializers.ModelSerializer):
     class Meta:model=CourseModule;fields='__all__';read_only_fields=['course']
 class CourseSerializer(serializers.ModelSerializer):
