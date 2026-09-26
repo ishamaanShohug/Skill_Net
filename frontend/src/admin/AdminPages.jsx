@@ -32,7 +32,7 @@ import {
   UserCheck,
   Users,
 } from "lucide-react";
-import { applicants, courses, jobs } from "../../data/mockData";
+import { applicants, courses, jobs } from "../shared/data/mockData";
 import {
   Avatar,
   Badge,
@@ -43,10 +43,11 @@ import {
   StatCard,
   StatusBadge,
   TableActions,
-} from "../../components/common/UI";
-import { useToast } from "../../context/ToastContext";
-import { adminService, courseService, jobService } from "../../services";
-import { useAsync } from "../../hooks/useAsync";
+} from "../shared/components/common/UI";
+import { useToast } from "../shared/context/ToastContext";
+import { adminService } from "./adminService";
+import { courseService, jobService } from "../shared/services/shared";
+import { useAsync } from "../shared/hooks/useAsync";
 const growth = [
   { m: "Mar", users: 1800, jobs: 210 },
   { m: "Apr", users: 2240, jobs: 265 },

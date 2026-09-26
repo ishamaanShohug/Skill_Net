@@ -1,17 +1,17 @@
 import { lazy, Suspense } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
-import PublicLayout from "./components/layout/PublicLayout";
-import DashboardLayout from "./components/layout/DashboardLayout";
-import { ProtectedRoute } from "./routes/RouteGuards";
-import { Spinner } from "./components/common/UI";
+import PublicLayout from "./shared/components/layout/PublicLayout";
+import DashboardLayout from "./shared/components/layout/DashboardLayout";
+import { ProtectedRoute } from "./shared/routes/RouteGuards";
+import { Spinner } from "./shared/components/common/UI";
 const page = (loader, name) =>
   lazy(() => loader().then((module) => ({ default: module[name] })));
-const publicPages = () => import("./pages/public/PublicPages");
-const authPages = () => import("./pages/auth/AuthPages");
-const seekerPages = () => import("./pages/seeker/SeekerPages");
-const employerPages = () => import("./pages/employer/EmployerPages");
-const adminPages = () => import("./pages/admin/AdminPages");
-const sharedPages = () => import("./pages/shared/SharedPages");
+const publicPages = () => import("./public/PublicPages");
+const authPages = () => import("./auth/AuthPages");
+const seekerPages = () => import("./seeker/SeekerPages");
+const employerPages = () => import("./employer/EmployerPages");
+const adminPages = () => import("./admin/AdminPages");
+const sharedPages = () => import("./shared/pages/SharedPages");
 const Public = {
   Home: page(publicPages, "Home"),
   Jobs: page(publicPages, "Jobs"),

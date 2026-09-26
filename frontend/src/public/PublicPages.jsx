@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import {
   ArrowRight,
@@ -11,15 +11,14 @@ import {
   Filter,
   GraduationCap,
   MapPin,
-  Navigation,
   Search,
   Sparkles,
   Star,
   Target,
   Users,
 } from "lucide-react";
-import { courseService, jobService } from "../../services";
-import { useAsync } from "../../hooks/useAsync";
+import { courseService, jobService } from "../shared/services/shared";
+import { useAsync } from "../shared/hooks/useAsync";
 import {
   Badge,
   Button,
@@ -30,9 +29,9 @@ import {
   PageHeader,
   SearchBox,
   Spinner,
-} from "../../components/common/UI";
-import { useAuth } from "../../context/AuthContext";
-import { useToast } from "../../context/ToastContext";
+} from "../shared/components/common/UI";
+import { useAuth } from "../shared/context/AuthContext";
+import { useToast } from "../shared/context/ToastContext";
 export function Home() {
   const nav = useNavigate();
   const [term, setTerm] = useState("");
@@ -326,23 +325,113 @@ export function Home() {
     </>
   );
 }
+const JOB_TYPE_OPTIONS = [
+  { value: "All", label: "All types" },
+  { value: "FULL_TIME", label: "Full-time" },
+  { value: "PART_TIME", label: "Part-time" },
+  { value: "CONTRACT", label: "Contract" },
+  { value: "INTERNSHIP", label: "Internship" },
+  { value: "FREELANCE", label: "Freelance" },
+];
+const JOBS_PER_PAGE = 6;
+const SALARY_BUCKETS = [
+  { value: "lt50", label: "Under ৳50,000", test: (v) => v < 50000 },
+  { value: "50-100", label: "৳50,000 – ৳100,000", test: (v) => v >= 50000 && v < 100000 },
+  { value: "100-150", label: "৳100,000 – ৳150,000", test: (v) => v >= 100000 && v < 150000 },
+  { value: "150+", label: "৳150,000+", test: (v) => v >= 150000 },
+];
+const DATE_BUCKETS = [
+  { value: "24h", label: "Last 24 hours", ms: 24 * 60 * 60 * 1000 },
+  { value: "7d", label: "Last 7 days", ms: 7 * 24 * 60 * 60 * 1000 },
+  { value: "30d", label: "Last 30 days", ms: 30 * 24 * 60 * 60 * 1000 },
+];
+const WORKPLACE_TYPES = ["Remote", "Hybrid", "On-site"];
+const classifyWorkplace = (jobLocation = "") => {
+  const lower = jobLocation.toLowerCase();
+  if (lower.includes("remote")) return "Remote";
+  if (lower.includes("hybrid")) return "Hybrid";
+  return "On-site";
+};
+function FilterGroup({ title, options, selected, onToggle, empty }) {
+  return (
+    <details open>
+      <summary>
+        {title}
+        <span>⌄</span>
+      </summary>
+      {options.length ? (
+        options.map((opt) => (
+          <label key={opt.value}>
+            <input type="checkbox" checked={selected.includes(opt.value)} onChange={() => onToggle(opt.value)} /> {opt.label}
+          </label>
+        ))
+      ) : (
+        <small className="muted">{empty}</small>
+      )}
+    </details>
+  );
+}
 export function Jobs() {
   const { data, loading, error } = useAsync(jobService.getJobs);
   const [query, setQuery] = useState(
     new URLSearchParams(location.search).get("q") || "",
   );
-  const [type, setType] = useState("All");
-  const filtered = useMemo(
-    () =>
-      data?.filter(
-        (j) =>
-          (j.title + j.company + j.skills.join(" "))
-            .toLowerCase()
-            .includes(query.toLowerCase()) &&
-          (type === "All" || j.type === type),
-      ) || [],
-    [data, query, type],
+  const [jobType, setJobType] = useState("All");
+  const [locationQuery, setLocationQuery] = useState("");
+  const [categories, setCategories] = useState([]);
+  const [experiences, setExperiences] = useState([]);
+  const [salaryBuckets, setSalaryBuckets] = useState([]);
+  const [dateBuckets, setDateBuckets] = useState([]);
+  const [workplaces, setWorkplaces] = useState([]);
+  const [sort, setSort] = useState("Most relevant");
+  const [page, setPage] = useState(1);
+  const [now, setNow] = useState(() => Date.now());
+  useEffect(() => setNow(Date.now()), [data]);
+  const categoryOptions = useMemo(
+    () => Array.from(new Set((data || []).map((j) => j.category).filter(Boolean))).sort(),
+    [data],
   );
+  const experienceOptions = useMemo(
+    () => Array.from(new Set((data || []).map((j) => j.experience).filter(Boolean))).sort(),
+    [data],
+  );
+  const toggle = (setter) => (value) => setter((prev) => (prev.includes(value) ? prev.filter((c) => c !== value) : [...prev, value]));
+  const resetFilters = () => {
+    setQuery("");
+    setJobType("All");
+    setLocationQuery("");
+    setCategories([]);
+    setExperiences([]);
+    setSalaryBuckets([]);
+    setDateBuckets([]);
+    setWorkplaces([]);
+    setSort("Most relevant");
+  };
+  const filtered = useMemo(() => {
+    const results = (data || []).filter((j) => {
+      const salary = j.salary_min ?? j.salary_max ?? 0;
+      const age = now - new Date(j.created_at).getTime();
+      return (
+        (j.title + j.company + j.skills.join(" "))
+          .toLowerCase()
+          .includes(query.toLowerCase()) &&
+        (jobType === "All" || j.job_type === jobType) &&
+        (!locationQuery.trim() || (j.location || "").toLowerCase().includes(locationQuery.toLowerCase())) &&
+        (categories.length === 0 || categories.includes(j.category)) &&
+        (experiences.length === 0 || experiences.includes(j.experience)) &&
+        (salaryBuckets.length === 0 || SALARY_BUCKETS.filter((b) => salaryBuckets.includes(b.value)).some((b) => b.test(salary))) &&
+        (dateBuckets.length === 0 || DATE_BUCKETS.filter((b) => dateBuckets.includes(b.value)).some((b) => age <= b.ms)) &&
+        (workplaces.length === 0 || workplaces.includes(classifyWorkplace(j.location)))
+      );
+    });
+    if (sort === "Newest first") results.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+    else if (sort === "Salary: high to low") results.sort((a, b) => (b.salary_max ?? b.salary_min ?? 0) - (a.salary_max ?? a.salary_min ?? 0));
+    return results;
+  }, [data, query, jobType, locationQuery, categories, experiences, salaryBuckets, dateBuckets, workplaces, sort, now]);
+  useEffect(() => setPage(1), [query, jobType, locationQuery, categories, experiences, salaryBuckets, dateBuckets, workplaces, sort]);
+  const totalPages = Math.max(1, Math.ceil(filtered.length / JOBS_PER_PAGE));
+  const currentPage = Math.min(page, totalPages);
+  const visible = filtered.slice((currentPage - 1) * JOBS_PER_PAGE, currentPage * JOBS_PER_PAGE);
   return (
     <div className="container page">
       <PageHeader
@@ -350,7 +439,7 @@ export function Jobs() {
         title="Jobs matched to real skills"
         description="Explore roles from employers who look beyond the CV."
       />
-      <div className="search-panel">
+      <form className="search-panel" onSubmit={(e) => e.preventDefault()}>
         <SearchBox
           value={query}
           onChange={(e) => setQuery(e.target.value)}
@@ -358,58 +447,72 @@ export function Jobs() {
         />
         <label>
           <MapPin />
-          <input placeholder="Location" />
+          <input
+            value={locationQuery}
+            onChange={(e) => setLocationQuery(e.target.value)}
+            placeholder="Location"
+          />
         </label>
-        <select value={type} onChange={(e) => setType(e.target.value)}>
-          <option>All</option>
-          <option>Full-time</option>
-          <option>Contract</option>
-          <option>Internship</option>
+        <select value={jobType} onChange={(e) => setJobType(e.target.value)}>
+          {JOB_TYPE_OPTIONS.map((option) => (
+            <option value={option.value} key={option.value}>
+              {option.label}
+            </option>
+          ))}
         </select>
-        <Button>
+        <Button type="submit">
           <Search />
           Search
         </Button>
-      </div>
+      </form>
       <div className="listing-layout">
         <aside className="filters">
           <div className="row between">
             <h3>Filters</h3>
-            <button>Reset</button>
+            <button onClick={resetFilters}>Reset</button>
           </div>
-          {[
-            "Category",
-            "Experience level",
-            "Salary range",
-            "Workplace",
-            "Posted date",
-          ].map((x, i) => (
-            <details open={i < 2} key={x}>
-              <summary>
-                {x}
-                <span>⌄</span>
-              </summary>
-              {i < 2 &&
-                ["Technology", "Design", "Customer Service", "Skilled Trades"]
-                  .slice(0, i ? 3 : 4)
-                  .map((v) => (
-                    <label key={v}>
-                      <input type="checkbox" /> {v}
-                    </label>
-                  ))}
-            </details>
-          ))}
-          <button className="location-button">
-            <Navigation />
-            Use my current location
-          </button>
+          <FilterGroup
+            title="Category"
+            options={categoryOptions.map((v) => ({ value: v, label: v }))}
+            selected={categories}
+            onToggle={toggle(setCategories)}
+            empty="Categories will appear once jobs are published."
+          />
+          <FilterGroup
+            title="Experience level"
+            options={experienceOptions.map((v) => ({ value: v, label: v }))}
+            selected={experiences}
+            onToggle={toggle(setExperiences)}
+            empty="Experience levels will appear once jobs are published."
+          />
+          <FilterGroup
+            title="Salary range"
+            options={SALARY_BUCKETS}
+            selected={salaryBuckets}
+            onToggle={toggle(setSalaryBuckets)}
+            empty=""
+          />
+          <FilterGroup
+            title="Workplace"
+            options={WORKPLACE_TYPES.map((v) => ({ value: v, label: v }))}
+            selected={workplaces}
+            onToggle={toggle(setWorkplaces)}
+            empty=""
+          />
+          <FilterGroup
+            title="Posted date"
+            options={DATE_BUCKETS}
+            selected={dateBuckets}
+            onToggle={toggle(setDateBuckets)}
+            empty=""
+          />
         </aside>
         <div className="results">
           <div className="row between result-head">
             <span>
               <strong>{filtered.length}</strong> opportunities
             </span>
-            <select>
+            <select value={sort} onChange={(e) => setSort(e.target.value)}>
               <option>Most relevant</option>
               <option>Newest first</option>
               <option>Salary: high to low</option>
@@ -421,7 +524,7 @@ export function Jobs() {
             <ErrorState />
           ) : filtered.length ? (
             <div className="card-grid two">
-              {filtered.map((j) => (
+              {visible.map((j) => (
                 <JobCard key={j.id} job={j} />
               ))}
             </div>
@@ -430,15 +533,28 @@ export function Jobs() {
               icon={Search}
               title="No matching jobs"
               description="Try a broader keyword or clear some filters."
+              action={
+                <Button variant="secondary" onClick={resetFilters}>
+                  Clear filters
+                </Button>
+              }
             />
           )}
-          <div className="pagination">
-            <button>‹</button>
-            <button className="active">1</button>
-            <button>2</button>
-            <button>3</button>
-            <button>›</button>
-          </div>
+          {totalPages > 1 && (
+            <div className="pagination">
+              <button disabled={currentPage === 1} onClick={() => setPage(currentPage - 1)}>
+                ‹
+              </button>
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map((n) => (
+                <button className={n === currentPage ? "active" : ""} onClick={() => setPage(n)} key={n}>
+                  {n}
+                </button>
+              ))}
+              <button disabled={currentPage === totalPages} onClick={() => setPage(currentPage + 1)}>
+                ›
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>
