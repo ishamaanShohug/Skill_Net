@@ -1,0 +1,935 @@
+[2m2:46:07 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled error] [1mTypeError[22m: jobs?.slice is not a function
+[39m > Home src/pages/public/PublicPages.jsx:2:2164
+    1  |  import { useMemo,useState } from 'react';import { Link,useNavigate,useParams } from 'react-router-dom';import { Arrow...
+    2  |  ...Right/></Link></div><div className="card-grid three">{jobs?.slice(0,3).map(j=><JobCard key={j.id} job={j}/>)}</div...
+       |                                                                 ^
+    3  |  export function Jobs(){const {data,loading,error}=useAsync(jobService.getJobs);const [query,setQuery]=useState(new UR...
+    4  |  export function JobDetail(){const {id}=useParams();const {data:job,loading,error}=useAsync(()=>jobService.getById(id)...
+ > Object.react_stack_bottom_frame node_modules/react-dom/cjs/react-dom-client.development.js:25904:19
+ > renderWithHooks node_modules/react-dom/cjs/react-dom-client.development.js:7662:21
+ > updateFunctionComponent node_modules/react-dom/cjs/react-dom-client.development.js:10166:18
+ > beginWork node_modules/react-dom/cjs/react-dom-client.development.js:11778:17
+ > runWithFiberInDEV node_modules/react-dom/cjs/react-dom-client.development.js:871:29
+ > performUnitOfWork node_modules/react-dom/cjs/react-dom-client.development.js:17641:21
+ > workLoopSync node_modules/react-dom/cjs/react-dom-client.development.js:17469:40
+ > renderRootSync node_modules/react-dom/cjs/react-dom-client.development.js:17450:10
+ > performWorkOnRoot node_modules/react-dom/cjs/react-dom-client.development.js:16583:34
+
+[2m2:46:07 PM[22m [33m[1m[vite][22m[39m [33m[2m(client)[22m[39m [2m[console.warn] [22mAn error occurred in the <Home> component.
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://react.dev/link/error-boundaries to learn more about error boundaries.
+
+[2m2:46:27 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled error] [1mTypeError[22m: courses?.slice is not a function
+[39m > Home src/pages/public/PublicPages.jsx:2:4761
+    1  |  import { useMemo,useState } from 'react';import { Link,useNavigate,useParams } from 'react-router-dom';import { Arrow...
+    2  |  ...ht/></Link></div><div className="card-grid three">{courses?.slice(0,3).map(c=><CourseCard key={c.id} course={c}/>)...
+       |                                                                 ^
+    3  |  export function Jobs(){const {data,loading,error}=useAsync(jobService.getJobs);const [query,setQuery]=useState(new UR...
+    4  |  export function JobDetail(){const {id}=useParams();const {data:job,loading,error}=useAsync(()=>jobService.getById(id)...
+ > Object.react_stack_bottom_frame node_modules/react-dom/cjs/react-dom-client.development.js:25904:19
+ > renderWithHooks node_modules/react-dom/cjs/react-dom-client.development.js:7662:21
+ > updateFunctionComponent node_modules/react-dom/cjs/react-dom-client.development.js:10166:18
+ > beginWork node_modules/react-dom/cjs/react-dom-client.development.js:11778:17
+ > runWithFiberInDEV node_modules/react-dom/cjs/react-dom-client.development.js:871:29
+ > performUnitOfWork node_modules/react-dom/cjs/react-dom-client.development.js:17641:21
+ > workLoopSync node_modules/react-dom/cjs/react-dom-client.development.js:17469:40
+ > renderRootSync node_modules/react-dom/cjs/react-dom-client.development.js:17450:10
+ > performWorkOnRoot node_modules/react-dom/cjs/react-dom-client.development.js:16583:34
+
+[2m2:46:27 PM[22m [33m[1m[vite][22m[39m [33m[2m(client)[22m[39m [2m[console.warn] [22mAn error occurred in the <Home> component.
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://react.dev/link/error-boundaries to learn more about error boundaries.
+
+[2m2:46:34 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled error] [1mTypeError[22m: courses?.slice is not a function
+[39m > Home src/pages/public/PublicPages.jsx:2:4761
+    1  |  import { useMemo,useState } from 'react';import { Link,useNavigate,useParams } from 'react-router-dom';import { Arrow...
+    2  |  ...ht/></Link></div><div className="card-grid three">{courses?.slice(0,3).map(c=><CourseCard key={c.id} course={c}/>)...
+       |                                                                 ^
+    3  |  export function Jobs(){const {data,loading,error}=useAsync(jobService.getJobs);const [query,setQuery]=useState(new UR...
+    4  |  export function JobDetail(){const {id}=useParams();const {data:job,loading,error}=useAsync(()=>jobService.getById(id)...
+ > Object.react_stack_bottom_frame node_modules/react-dom/cjs/react-dom-client.development.js:25904:19
+ > renderWithHooks node_modules/react-dom/cjs/react-dom-client.development.js:7662:21
+ > updateFunctionComponent node_modules/react-dom/cjs/react-dom-client.development.js:10166:18
+ > beginWork node_modules/react-dom/cjs/react-dom-client.development.js:11778:17
+ > runWithFiberInDEV node_modules/react-dom/cjs/react-dom-client.development.js:871:29
+ > performUnitOfWork node_modules/react-dom/cjs/react-dom-client.development.js:17641:21
+ > workLoopSync node_modules/react-dom/cjs/react-dom-client.development.js:17469:40
+ > renderRootSync node_modules/react-dom/cjs/react-dom-client.development.js:17450:10
+ > performWorkOnRoot node_modules/react-dom/cjs/react-dom-client.development.js:16583:34
+
+[2m2:46:34 PM[22m [33m[1m[vite][22m[39m [33m[2m(client)[22m[39m [2m[console.warn] [22mAn error occurred in the <Home> component.
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://react.dev/link/error-boundaries to learn more about error boundaries.
+
+[2m2:46:45 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled error] [1mTypeError[22m: courses?.slice is not a function
+[39m > Home src/pages/public/PublicPages.jsx:2:4761
+    1  |  import { useMemo,useState } from 'react';import { Link,useNavigate,useParams } from 'react-router-dom';import { Arrow...
+    2  |  ...ht/></Link></div><div className="card-grid three">{courses?.slice(0,3).map(c=><CourseCard key={c.id} course={c}/>)...
+       |                                                                 ^
+    3  |  export function Jobs(){const {data,loading,error}=useAsync(jobService.getJobs);const [query,setQuery]=useState(new UR...
+    4  |  export function JobDetail(){const {id}=useParams();const {data:job,loading,error}=useAsync(()=>jobService.getById(id)...
+ > Object.react_stack_bottom_frame node_modules/react-dom/cjs/react-dom-client.development.js:25904:19
+ > renderWithHooks node_modules/react-dom/cjs/react-dom-client.development.js:7662:21
+ > updateFunctionComponent node_modules/react-dom/cjs/react-dom-client.development.js:10166:18
+ > beginWork node_modules/react-dom/cjs/react-dom-client.development.js:11778:17
+ > runWithFiberInDEV node_modules/react-dom/cjs/react-dom-client.development.js:871:29
+ > performUnitOfWork node_modules/react-dom/cjs/react-dom-client.development.js:17641:21
+ > workLoopSync node_modules/react-dom/cjs/react-dom-client.development.js:17469:40
+ > renderRootSync node_modules/react-dom/cjs/react-dom-client.development.js:17450:10
+ > performWorkOnRoot node_modules/react-dom/cjs/react-dom-client.development.js:16583:34
+
+[2m2:46:45 PM[22m [33m[1m[vite][22m[39m [33m[2m(client)[22m[39m [2m[console.warn] [22mAn error occurred in the <Home> component.
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://react.dev/link/error-boundaries to learn more about error boundaries.
+
+[2m2:46:55 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled error] [1mTypeError[22m: jobs?.slice is not a function
+[39m > Home src/pages/public/PublicPages.jsx:2:2164
+    1  |  import { useMemo,useState } from 'react';import { Link,useNavigate,useParams } from 'react-router-dom';import { Arrow...
+    2  |  ...Right/></Link></div><div className="card-grid three">{jobs?.slice(0,3).map(j=><JobCard key={j.id} job={j}/>)}</div...
+       |                                                                 ^
+    3  |  export function Jobs(){const {data,loading,error}=useAsync(jobService.getJobs);const [query,setQuery]=useState(new UR...
+    4  |  export function JobDetail(){const {id}=useParams();const {data:job,loading,error}=useAsync(()=>jobService.getById(id)...
+ > Object.react_stack_bottom_frame node_modules/react-dom/cjs/react-dom-client.development.js:25904:19
+ > renderWithHooks node_modules/react-dom/cjs/react-dom-client.development.js:7662:21
+ > updateFunctionComponent node_modules/react-dom/cjs/react-dom-client.development.js:10166:18
+ > beginWork node_modules/react-dom/cjs/react-dom-client.development.js:11778:17
+ > runWithFiberInDEV node_modules/react-dom/cjs/react-dom-client.development.js:871:29
+ > performUnitOfWork node_modules/react-dom/cjs/react-dom-client.development.js:17641:21
+ > workLoopSync node_modules/react-dom/cjs/react-dom-client.development.js:17469:40
+ > renderRootSync node_modules/react-dom/cjs/react-dom-client.development.js:17450:10
+ > performWorkOnRoot node_modules/react-dom/cjs/react-dom-client.development.js:16583:34
+
+[2m2:46:55 PM[22m [33m[1m[vite][22m[39m [33m[2m(client)[22m[39m [2m[console.warn] [22mAn error occurred in the <Home> component.
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://react.dev/link/error-boundaries to learn more about error boundaries.
+
+[2m2:47:17 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled error] [1mTypeError[22m: courses?.slice is not a function
+[39m > Home src/pages/public/PublicPages.jsx:2:4761
+    1  |  import { useMemo,useState } from 'react';import { Link,useNavigate,useParams } from 'react-router-dom';import { Arrow...
+    2  |  ...ht/></Link></div><div className="card-grid three">{courses?.slice(0,3).map(c=><CourseCard key={c.id} course={c}/>)...
+       |                                                                 ^
+    3  |  export function Jobs(){const {data,loading,error}=useAsync(jobService.getJobs);const [query,setQuery]=useState(new UR...
+    4  |  export function JobDetail(){const {id}=useParams();const {data:job,loading,error}=useAsync(()=>jobService.getById(id)...
+ > Object.react_stack_bottom_frame node_modules/react-dom/cjs/react-dom-client.development.js:25904:19
+ > renderWithHooks node_modules/react-dom/cjs/react-dom-client.development.js:7662:21
+ > updateFunctionComponent node_modules/react-dom/cjs/react-dom-client.development.js:10166:18
+ > beginWork node_modules/react-dom/cjs/react-dom-client.development.js:11778:17
+ > runWithFiberInDEV node_modules/react-dom/cjs/react-dom-client.development.js:871:29
+ > performUnitOfWork node_modules/react-dom/cjs/react-dom-client.development.js:17641:21
+ > workLoopSync node_modules/react-dom/cjs/react-dom-client.development.js:17469:40
+ > renderRootSync node_modules/react-dom/cjs/react-dom-client.development.js:17450:10
+ > performWorkOnRoot node_modules/react-dom/cjs/react-dom-client.development.js:16583:34
+
+[2m2:47:17 PM[22m [33m[1m[vite][22m[39m [33m[2m(client)[22m[39m [2m[console.warn] [22mAn error occurred in the <Home> component.
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://react.dev/link/error-boundaries to learn more about error boundaries.
+
+[2m2:47:47 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled error] [1mTypeError[22m: jobs?.slice is not a function
+[39m > Home src/pages/public/PublicPages.jsx:2:2164
+    1  |  import { useMemo,useState } from 'react';import { Link,useNavigate,useParams } from 'react-router-dom';import { Arrow...
+    2  |  ...Right/></Link></div><div className="card-grid three">{jobs?.slice(0,3).map(j=><JobCard key={j.id} job={j}/>)}</div...
+       |                                                                 ^
+    3  |  export function Jobs(){const {data,loading,error}=useAsync(jobService.getJobs);const [query,setQuery]=useState(new UR...
+    4  |  export function JobDetail(){const {id}=useParams();const {data:job,loading,error}=useAsync(()=>jobService.getById(id)...
+ > Object.react_stack_bottom_frame node_modules/react-dom/cjs/react-dom-client.development.js:25904:19
+ > renderWithHooks node_modules/react-dom/cjs/react-dom-client.development.js:7662:21
+ > updateFunctionComponent node_modules/react-dom/cjs/react-dom-client.development.js:10166:18
+ > beginWork node_modules/react-dom/cjs/react-dom-client.development.js:11778:17
+ > runWithFiberInDEV node_modules/react-dom/cjs/react-dom-client.development.js:871:29
+ > performUnitOfWork node_modules/react-dom/cjs/react-dom-client.development.js:17641:21
+ > workLoopSync node_modules/react-dom/cjs/react-dom-client.development.js:17469:40
+ > renderRootSync node_modules/react-dom/cjs/react-dom-client.development.js:17450:10
+ > performWorkOnRoot node_modules/react-dom/cjs/react-dom-client.development.js:16583:34
+
+[2m2:47:47 PM[22m [33m[1m[vite][22m[39m [33m[2m(client)[22m[39m [2m[console.warn] [22mAn error occurred in the <Home> component.
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://react.dev/link/error-boundaries to learn more about error boundaries.
+
+[2m2:48:06 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mEncountered two children with the same key, `[object Object]`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.
+[2m2:48:06 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mEncountered two children with the same key, `[object Object]`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.
+[2m2:48:06 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled error] [1mError[22m: Objects are not valid as a React child (found: object with keys {id, created_at, updated_at, name, slug, category}). If you meant to render a collection of children, use an array instead.
+[39m > throwOnInvalidObjectTypeImpl node_modules/react-dom/cjs/react-dom-client.development.js:6099:12
+ > throwOnInvalidObjectType node_modules/react-dom/cjs/react-dom-client.development.js:6113:10
+ > reconcileChildFibersImpl node_modules/react-dom/cjs/react-dom-client.development.js:7058:10
+ > node_modules/react-dom/cjs/react-dom-client.development.js:7098:32
+ > reconcileChildren node_modules/react-dom/cjs/react-dom-client.development.js:9701:12
+ > beginWork node_modules/react-dom/cjs/react-dom-client.development.js:12049:12
+ > runWithFiberInDEV node_modules/react-dom/cjs/react-dom-client.development.js:871:29
+ > performUnitOfWork node_modules/react-dom/cjs/react-dom-client.development.js:17641:21
+ > workLoopSync node_modules/react-dom/cjs/react-dom-client.development.js:17469:40
+ > renderRootSync node_modules/react-dom/cjs/react-dom-client.development.js:17450:10
+
+[2m2:48:06 PM[22m [33m[1m[vite][22m[39m [33m[2m(client)[22m[39m [2m[console.warn] [22mAn error occurred in the <span> component.
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://react.dev/link/error-boundaries to learn more about error boundaries.
+
+[2m2:48:41 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mEncountered two children with the same key, `[object Object]`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.
+[2m2:48:41 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mEncountered two children with the same key, `[object Object]`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.
+[2m2:48:41 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled error] [1mError[22m: Objects are not valid as a React child (found: object with keys {id, created_at, updated_at, name, slug, category}). If you meant to render a collection of children, use an array instead.
+[39m > throwOnInvalidObjectTypeImpl node_modules/react-dom/cjs/react-dom-client.development.js:6099:12
+ > throwOnInvalidObjectType node_modules/react-dom/cjs/react-dom-client.development.js:6113:10
+ > reconcileChildFibersImpl node_modules/react-dom/cjs/react-dom-client.development.js:7058:10
+ > node_modules/react-dom/cjs/react-dom-client.development.js:7098:32
+ > reconcileChildren node_modules/react-dom/cjs/react-dom-client.development.js:9701:12
+ > beginWork node_modules/react-dom/cjs/react-dom-client.development.js:12049:12
+ > runWithFiberInDEV node_modules/react-dom/cjs/react-dom-client.development.js:871:29
+ > performUnitOfWork node_modules/react-dom/cjs/react-dom-client.development.js:17641:21
+ > workLoopSync node_modules/react-dom/cjs/react-dom-client.development.js:17469:40
+ > renderRootSync node_modules/react-dom/cjs/react-dom-client.development.js:17450:10
+
+[2m2:48:41 PM[22m [33m[1m[vite][22m[39m [33m[2m(client)[22m[39m [2m[console.warn] [22mAn error occurred in the <span> component.
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://react.dev/link/error-boundaries to learn more about error boundaries.
+
+[2m2:48:45 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mEncountered two children with the same key, `[object Object]`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.
+[2m2:48:45 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mEncountered two children with the same key, `[object Object]`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.
+[2m2:48:45 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled error] [1mError[22m: Objects are not valid as a React child (found: object with keys {id, created_at, updated_at, name, slug, category}). If you meant to render a collection of children, use an array instead.
+[39m > throwOnInvalidObjectTypeImpl node_modules/react-dom/cjs/react-dom-client.development.js:6099:12
+ > throwOnInvalidObjectType node_modules/react-dom/cjs/react-dom-client.development.js:6113:10
+ > reconcileChildFibersImpl node_modules/react-dom/cjs/react-dom-client.development.js:7058:10
+ > node_modules/react-dom/cjs/react-dom-client.development.js:7098:32
+ > reconcileChildren node_modules/react-dom/cjs/react-dom-client.development.js:9701:12
+ > beginWork node_modules/react-dom/cjs/react-dom-client.development.js:12049:12
+ > runWithFiberInDEV node_modules/react-dom/cjs/react-dom-client.development.js:871:29
+ > performUnitOfWork node_modules/react-dom/cjs/react-dom-client.development.js:17641:21
+ > workLoopSync node_modules/react-dom/cjs/react-dom-client.development.js:17469:40
+ > renderRootSync node_modules/react-dom/cjs/react-dom-client.development.js:17450:10
+
+[2m2:48:45 PM[22m [33m[1m[vite][22m[39m [33m[2m(client)[22m[39m [2m[console.warn] [22mAn error occurred in the <span> component.
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://react.dev/link/error-boundaries to learn more about error boundaries.
+
+[2m2:49:58 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled rejection] [1mAxiosError[22m: Network Error
+[39m > XMLHttpRequest.handleError node_modules/axios/lib/adapters/xhr.js:124:20
+ > Axios$1.request node_modules/axios/lib/core/Axios.js:46:40
+ > login src/context/AuthContext.jsx:10:61
+    8  |   const [loading,setLoading]=useState(false);
+    9  |   useEffect(()=>{const clear=()=>{setUser(null);sessionStorage.removeItem(SESSION_KEY)};window.addEventListener('skill...
+    10 |  ...const login=async(data)=>{setLoading(true);try{const result=await authService.login(data);setAccessToken(result.ac...
+       |                                                                 ^
+    11 |   const register=async(data)=>{setLoading(true);try{const result=await authService.register(data);setAccessToken(resul...
+    12 |   const logout=()=>{setAccessToken(null);setUser(null);sessionStorage.removeItem(SESSION_KEY)};
+ > submit src/pages/auth/AuthPages.jsx:4:564
+
+[2m2:50:00 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled rejection] [1mAxiosError[22m: Network Error
+[39m > XMLHttpRequest.handleError node_modules/axios/lib/adapters/xhr.js:124:20
+ > Axios$1.request node_modules/axios/lib/core/Axios.js:46:40
+ > login src/context/AuthContext.jsx:10:61
+    8  |   const [loading,setLoading]=useState(false);
+    9  |   useEffect(()=>{const clear=()=>{setUser(null);sessionStorage.removeItem(SESSION_KEY)};window.addEventListener('skill...
+    10 |  ...const login=async(data)=>{setLoading(true);try{const result=await authService.login(data);setAccessToken(result.ac...
+       |                                                                 ^
+    11 |   const register=async(data)=>{setLoading(true);try{const result=await authService.register(data);setAccessToken(resul...
+    12 |   const logout=()=>{setAccessToken(null);setUser(null);sessionStorage.removeItem(SESSION_KEY)};
+ > submit src/pages/auth/AuthPages.jsx:4:564
+
+[2m2:50:01 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled rejection] [1mAxiosError[22m: Network Error
+[39m > XMLHttpRequest.handleError node_modules/axios/lib/adapters/xhr.js:124:20
+ > Axios$1.request node_modules/axios/lib/core/Axios.js:46:40
+ > login src/context/AuthContext.jsx:10:61
+    8  |   const [loading,setLoading]=useState(false);
+    9  |   useEffect(()=>{const clear=()=>{setUser(null);sessionStorage.removeItem(SESSION_KEY)};window.addEventListener('skill...
+    10 |  ...const login=async(data)=>{setLoading(true);try{const result=await authService.login(data);setAccessToken(result.ac...
+       |                                                                 ^
+    11 |   const register=async(data)=>{setLoading(true);try{const result=await authService.register(data);setAccessToken(resul...
+    12 |   const logout=()=>{setAccessToken(null);setUser(null);sessionStorage.removeItem(SESSION_KEY)};
+ > submit src/pages/auth/AuthPages.jsx:4:564
+
+[2m2:50:04 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled rejection] [1mAxiosError[22m: Network Error
+[39m > XMLHttpRequest.handleError node_modules/axios/lib/adapters/xhr.js:124:20
+ > Axios$1.request node_modules/axios/lib/core/Axios.js:46:40
+ > login src/context/AuthContext.jsx:10:61
+    8  |   const [loading,setLoading]=useState(false);
+    9  |   useEffect(()=>{const clear=()=>{setUser(null);sessionStorage.removeItem(SESSION_KEY)};window.addEventListener('skill...
+    10 |  ...const login=async(data)=>{setLoading(true);try{const result=await authService.login(data);setAccessToken(result.ac...
+       |                                                                 ^
+    11 |   const register=async(data)=>{setLoading(true);try{const result=await authService.register(data);setAccessToken(resul...
+    12 |   const logout=()=>{setAccessToken(null);setUser(null);sessionStorage.removeItem(SESSION_KEY)};
+ > submit src/pages/auth/AuthPages.jsx:4:564
+
+[2m2:50:04 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled rejection] [1mAxiosError[22m: Network Error
+[39m > XMLHttpRequest.handleError node_modules/axios/lib/adapters/xhr.js:124:20
+ > Axios$1.request node_modules/axios/lib/core/Axios.js:46:40
+ > login src/context/AuthContext.jsx:10:61
+    8  |   const [loading,setLoading]=useState(false);
+    9  |   useEffect(()=>{const clear=()=>{setUser(null);sessionStorage.removeItem(SESSION_KEY)};window.addEventListener('skill...
+    10 |  ...const login=async(data)=>{setLoading(true);try{const result=await authService.login(data);setAccessToken(result.ac...
+       |                                                                 ^
+    11 |   const register=async(data)=>{setLoading(true);try{const result=await authService.register(data);setAccessToken(resul...
+    12 |   const logout=()=>{setAccessToken(null);setUser(null);sessionStorage.removeItem(SESSION_KEY)};
+ > submit src/pages/auth/AuthPages.jsx:4:564
+
+[2m2:50:05 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled rejection] [1mAxiosError[22m: Network Error
+[39m > XMLHttpRequest.handleError node_modules/axios/lib/adapters/xhr.js:124:20
+ > Axios$1.request node_modules/axios/lib/core/Axios.js:46:40
+ > login src/context/AuthContext.jsx:10:61
+    8  |   const [loading,setLoading]=useState(false);
+    9  |   useEffect(()=>{const clear=()=>{setUser(null);sessionStorage.removeItem(SESSION_KEY)};window.addEventListener('skill...
+    10 |  ...const login=async(data)=>{setLoading(true);try{const result=await authService.login(data);setAccessToken(result.ac...
+       |                                                                 ^
+    11 |   const register=async(data)=>{setLoading(true);try{const result=await authService.register(data);setAccessToken(resul...
+    12 |   const logout=()=>{setAccessToken(null);setUser(null);sessionStorage.removeItem(SESSION_KEY)};
+ > submit src/pages/auth/AuthPages.jsx:4:564
+
+[2m2:50:08 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled rejection] [1mAxiosError[22m: Network Error
+[39m > XMLHttpRequest.handleError node_modules/axios/lib/adapters/xhr.js:124:20
+ > Axios$1.request node_modules/axios/lib/core/Axios.js:46:40
+ > login src/context/AuthContext.jsx:10:61
+    8  |   const [loading,setLoading]=useState(false);
+    9  |   useEffect(()=>{const clear=()=>{setUser(null);sessionStorage.removeItem(SESSION_KEY)};window.addEventListener('skill...
+    10 |  ...const login=async(data)=>{setLoading(true);try{const result=await authService.login(data);setAccessToken(result.ac...
+       |                                                                 ^
+    11 |   const register=async(data)=>{setLoading(true);try{const result=await authService.register(data);setAccessToken(resul...
+    12 |   const logout=()=>{setAccessToken(null);setUser(null);sessionStorage.removeItem(SESSION_KEY)};
+ > submit src/pages/auth/AuthPages.jsx:4:564
+
+[2m2:50:10 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled rejection] [1mAxiosError[22m: Network Error
+[39m > XMLHttpRequest.handleError node_modules/axios/lib/adapters/xhr.js:124:20
+ > Axios$1.request node_modules/axios/lib/core/Axios.js:46:40
+ > login src/context/AuthContext.jsx:10:61
+    8  |   const [loading,setLoading]=useState(false);
+    9  |   useEffect(()=>{const clear=()=>{setUser(null);sessionStorage.removeItem(SESSION_KEY)};window.addEventListener('skill...
+    10 |  ...const login=async(data)=>{setLoading(true);try{const result=await authService.login(data);setAccessToken(result.ac...
+       |                                                                 ^
+    11 |   const register=async(data)=>{setLoading(true);try{const result=await authService.register(data);setAccessToken(resul...
+    12 |   const logout=()=>{setAccessToken(null);setUser(null);sessionStorage.removeItem(SESSION_KEY)};
+ > submit src/pages/auth/AuthPages.jsx:4:564
+
+[2m2:50:10 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled rejection] [1mAxiosError[22m: Network Error
+[39m > XMLHttpRequest.handleError node_modules/axios/lib/adapters/xhr.js:124:20
+ > Axios$1.request node_modules/axios/lib/core/Axios.js:46:40
+ > login src/context/AuthContext.jsx:10:61
+    8  |   const [loading,setLoading]=useState(false);
+    9  |   useEffect(()=>{const clear=()=>{setUser(null);sessionStorage.removeItem(SESSION_KEY)};window.addEventListener('skill...
+    10 |  ...const login=async(data)=>{setLoading(true);try{const result=await authService.login(data);setAccessToken(result.ac...
+       |                                                                 ^
+    11 |   const register=async(data)=>{setLoading(true);try{const result=await authService.register(data);setAccessToken(resul...
+    12 |   const logout=()=>{setAccessToken(null);setUser(null);sessionStorage.removeItem(SESSION_KEY)};
+ > submit src/pages/auth/AuthPages.jsx:4:564
+
+[2m2:50:11 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled rejection] [1mAxiosError[22m: Network Error
+[39m > XMLHttpRequest.handleError node_modules/axios/lib/adapters/xhr.js:124:20
+ > Axios$1.request node_modules/axios/lib/core/Axios.js:46:40
+ > login src/context/AuthContext.jsx:10:61
+    8  |   const [loading,setLoading]=useState(false);
+    9  |   useEffect(()=>{const clear=()=>{setUser(null);sessionStorage.removeItem(SESSION_KEY)};window.addEventListener('skill...
+    10 |  ...const login=async(data)=>{setLoading(true);try{const result=await authService.login(data);setAccessToken(result.ac...
+       |                                                                 ^
+    11 |   const register=async(data)=>{setLoading(true);try{const result=await authService.register(data);setAccessToken(resul...
+    12 |   const logout=()=>{setAccessToken(null);setUser(null);sessionStorage.removeItem(SESSION_KEY)};
+ > submit src/pages/auth/AuthPages.jsx:4:564
+
+[2m2:50:11 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled rejection] [1mAxiosError[22m: Network Error
+[39m > XMLHttpRequest.handleError node_modules/axios/lib/adapters/xhr.js:124:20
+ > Axios$1.request node_modules/axios/lib/core/Axios.js:46:40
+ > login src/context/AuthContext.jsx:10:61
+    8  |   const [loading,setLoading]=useState(false);
+    9  |   useEffect(()=>{const clear=()=>{setUser(null);sessionStorage.removeItem(SESSION_KEY)};window.addEventListener('skill...
+    10 |  ...const login=async(data)=>{setLoading(true);try{const result=await authService.login(data);setAccessToken(result.ac...
+       |                                                                 ^
+    11 |   const register=async(data)=>{setLoading(true);try{const result=await authService.register(data);setAccessToken(resul...
+    12 |   const logout=()=>{setAccessToken(null);setUser(null);sessionStorage.removeItem(SESSION_KEY)};
+ > submit src/pages/auth/AuthPages.jsx:4:564
+
+[2m2:50:12 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled rejection] [1mAxiosError[22m: Network Error
+[39m > XMLHttpRequest.handleError node_modules/axios/lib/adapters/xhr.js:124:20
+ > Axios$1.request node_modules/axios/lib/core/Axios.js:46:40
+ > login src/context/AuthContext.jsx:10:61
+    8  |   const [loading,setLoading]=useState(false);
+    9  |   useEffect(()=>{const clear=()=>{setUser(null);sessionStorage.removeItem(SESSION_KEY)};window.addEventListener('skill...
+    10 |  ...const login=async(data)=>{setLoading(true);try{const result=await authService.login(data);setAccessToken(result.ac...
+       |                                                                 ^
+    11 |   const register=async(data)=>{setLoading(true);try{const result=await authService.register(data);setAccessToken(resul...
+    12 |   const logout=()=>{setAccessToken(null);setUser(null);sessionStorage.removeItem(SESSION_KEY)};
+ > submit src/pages/auth/AuthPages.jsx:4:564
+
+[2m2:50:13 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled rejection] [1mAxiosError[22m: Network Error
+[39m > XMLHttpRequest.handleError node_modules/axios/lib/adapters/xhr.js:124:20
+ > Axios$1.request node_modules/axios/lib/core/Axios.js:46:40
+ > login src/context/AuthContext.jsx:10:61
+    8  |   const [loading,setLoading]=useState(false);
+    9  |   useEffect(()=>{const clear=()=>{setUser(null);sessionStorage.removeItem(SESSION_KEY)};window.addEventListener('skill...
+    10 |  ...const login=async(data)=>{setLoading(true);try{const result=await authService.login(data);setAccessToken(result.ac...
+       |                                                                 ^
+    11 |   const register=async(data)=>{setLoading(true);try{const result=await authService.register(data);setAccessToken(resul...
+    12 |   const logout=()=>{setAccessToken(null);setUser(null);sessionStorage.removeItem(SESSION_KEY)};
+ > submit src/pages/auth/AuthPages.jsx:4:564
+
+[2m2:50:13 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled rejection] [1mAxiosError[22m: Network Error
+[39m > XMLHttpRequest.handleError node_modules/axios/lib/adapters/xhr.js:124:20
+ > Axios$1.request node_modules/axios/lib/core/Axios.js:46:40
+ > login src/context/AuthContext.jsx:10:61
+    8  |   const [loading,setLoading]=useState(false);
+    9  |   useEffect(()=>{const clear=()=>{setUser(null);sessionStorage.removeItem(SESSION_KEY)};window.addEventListener('skill...
+    10 |  ...const login=async(data)=>{setLoading(true);try{const result=await authService.login(data);setAccessToken(result.ac...
+       |                                                                 ^
+    11 |   const register=async(data)=>{setLoading(true);try{const result=await authService.register(data);setAccessToken(resul...
+    12 |   const logout=()=>{setAccessToken(null);setUser(null);sessionStorage.removeItem(SESSION_KEY)};
+ > submit src/pages/auth/AuthPages.jsx:4:564
+
+[2m2:50:15 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled rejection] [1mAxiosError[22m: Network Error
+[39m > XMLHttpRequest.handleError node_modules/axios/lib/adapters/xhr.js:124:20
+ > Axios$1.request node_modules/axios/lib/core/Axios.js:46:40
+ > login src/context/AuthContext.jsx:10:61
+    8  |   const [loading,setLoading]=useState(false);
+    9  |   useEffect(()=>{const clear=()=>{setUser(null);sessionStorage.removeItem(SESSION_KEY)};window.addEventListener('skill...
+    10 |  ...const login=async(data)=>{setLoading(true);try{const result=await authService.login(data);setAccessToken(result.ac...
+       |                                                                 ^
+    11 |   const register=async(data)=>{setLoading(true);try{const result=await authService.register(data);setAccessToken(resul...
+    12 |   const logout=()=>{setAccessToken(null);setUser(null);sessionStorage.removeItem(SESSION_KEY)};
+ > submit src/pages/auth/AuthPages.jsx:4:564
+
+[2m2:50:24 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled rejection] [1mAxiosError[22m: Network Error
+[39m > XMLHttpRequest.handleError node_modules/axios/lib/adapters/xhr.js:124:20
+ > Axios$1.request node_modules/axios/lib/core/Axios.js:46:40
+ > login src/context/AuthContext.jsx:10:61
+    8  |   const [loading,setLoading]=useState(false);
+    9  |   useEffect(()=>{const clear=()=>{setUser(null);sessionStorage.removeItem(SESSION_KEY)};window.addEventListener('skill...
+    10 |  ...const login=async(data)=>{setLoading(true);try{const result=await authService.login(data);setAccessToken(result.ac...
+       |                                                                 ^
+    11 |   const register=async(data)=>{setLoading(true);try{const result=await authService.register(data);setAccessToken(resul...
+    12 |   const logout=()=>{setAccessToken(null);setUser(null);sessionStorage.removeItem(SESSION_KEY)};
+ > submit src/pages/auth/AuthPages.jsx:4:564
+
+[2m2:50:25 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled rejection] [1mAxiosError[22m: Network Error
+[39m > XMLHttpRequest.handleError node_modules/axios/lib/adapters/xhr.js:124:20
+ > Axios$1.request node_modules/axios/lib/core/Axios.js:46:40
+ > login src/context/AuthContext.jsx:10:61
+    8  |   const [loading,setLoading]=useState(false);
+    9  |   useEffect(()=>{const clear=()=>{setUser(null);sessionStorage.removeItem(SESSION_KEY)};window.addEventListener('skill...
+    10 |  ...const login=async(data)=>{setLoading(true);try{const result=await authService.login(data);setAccessToken(result.ac...
+       |                                                                 ^
+    11 |   const register=async(data)=>{setLoading(true);try{const result=await authService.register(data);setAccessToken(resul...
+    12 |   const logout=()=>{setAccessToken(null);setUser(null);sessionStorage.removeItem(SESSION_KEY)};
+ > submit src/pages/auth/AuthPages.jsx:4:564
+
+[2m2:50:25 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled rejection] [1mAxiosError[22m: Network Error
+[39m > XMLHttpRequest.handleError node_modules/axios/lib/adapters/xhr.js:124:20
+ > Axios$1.request node_modules/axios/lib/core/Axios.js:46:40
+ > login src/context/AuthContext.jsx:10:61
+    8  |   const [loading,setLoading]=useState(false);
+    9  |   useEffect(()=>{const clear=()=>{setUser(null);sessionStorage.removeItem(SESSION_KEY)};window.addEventListener('skill...
+    10 |  ...const login=async(data)=>{setLoading(true);try{const result=await authService.login(data);setAccessToken(result.ac...
+       |                                                                 ^
+    11 |   const register=async(data)=>{setLoading(true);try{const result=await authService.register(data);setAccessToken(resul...
+    12 |   const logout=()=>{setAccessToken(null);setUser(null);sessionStorage.removeItem(SESSION_KEY)};
+ > submit src/pages/auth/AuthPages.jsx:4:564
+
+[2m2:50:28 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled rejection] [1mAxiosError[22m: Network Error
+[39m > XMLHttpRequest.handleError node_modules/axios/lib/adapters/xhr.js:124:20
+ > Axios$1.request node_modules/axios/lib/core/Axios.js:46:40
+ > login src/context/AuthContext.jsx:10:61
+    8  |   const [loading,setLoading]=useState(false);
+    9  |   useEffect(()=>{const clear=()=>{setUser(null);sessionStorage.removeItem(SESSION_KEY)};window.addEventListener('skill...
+    10 |  ...const login=async(data)=>{setLoading(true);try{const result=await authService.login(data);setAccessToken(result.ac...
+       |                                                                 ^
+    11 |   const register=async(data)=>{setLoading(true);try{const result=await authService.register(data);setAccessToken(resul...
+    12 |   const logout=()=>{setAccessToken(null);setUser(null);sessionStorage.removeItem(SESSION_KEY)};
+ > submit src/pages/auth/AuthPages.jsx:4:564
+
+[2m2:50:59 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled rejection] [1mAxiosError[22m: Network Error
+[39m > XMLHttpRequest.handleError node_modules/axios/lib/adapters/xhr.js:124:20
+ > Axios$1.request node_modules/axios/lib/core/Axios.js:46:40
+ > register src/context/AuthContext.jsx:11:64
+    9  |   useEffect(()=>{const clear=()=>{setUser(null);sessionStorage.removeItem(SESSION_KEY)};window.addEventListener('skill...
+    10 |   const login=async(data)=>{setLoading(true);try{const result=await authService.login(data);setAccessToken(result.acce...
+    11 |  ...st register=async(data)=>{setLoading(true);try{const result=await authService.register(data);setAccessToken(result...
+       |                                                                 ^
+    12 |   const logout=()=>{setAccessToken(null);setUser(null);sessionStorage.removeItem(SESSION_KEY)};
+    13 |   const value=useMemo(()=>({user,loading,login,register,logout,isAuthenticated:!!user}),[user,loading]);
+ > submit src/pages/auth/AuthPages.jsx:5:794
+
+[2m2:51:00 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled rejection] [1mAxiosError[22m: Network Error
+[39m > XMLHttpRequest.handleError node_modules/axios/lib/adapters/xhr.js:124:20
+ > Axios$1.request node_modules/axios/lib/core/Axios.js:46:40
+ > register src/context/AuthContext.jsx:11:64
+    9  |   useEffect(()=>{const clear=()=>{setUser(null);sessionStorage.removeItem(SESSION_KEY)};window.addEventListener('skill...
+    10 |   const login=async(data)=>{setLoading(true);try{const result=await authService.login(data);setAccessToken(result.acce...
+    11 |  ...st register=async(data)=>{setLoading(true);try{const result=await authService.register(data);setAccessToken(result...
+       |                                                                 ^
+    12 |   const logout=()=>{setAccessToken(null);setUser(null);sessionStorage.removeItem(SESSION_KEY)};
+    13 |   const value=useMemo(()=>({user,loading,login,register,logout,isAuthenticated:!!user}),[user,loading]);
+ > submit src/pages/auth/AuthPages.jsx:5:794
+
+[2m2:51:00 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled rejection] [1mAxiosError[22m: Network Error
+[39m > XMLHttpRequest.handleError node_modules/axios/lib/adapters/xhr.js:124:20
+ > Axios$1.request node_modules/axios/lib/core/Axios.js:46:40
+ > register src/context/AuthContext.jsx:11:64
+    9  |   useEffect(()=>{const clear=()=>{setUser(null);sessionStorage.removeItem(SESSION_KEY)};window.addEventListener('skill...
+    10 |   const login=async(data)=>{setLoading(true);try{const result=await authService.login(data);setAccessToken(result.acce...
+    11 |  ...st register=async(data)=>{setLoading(true);try{const result=await authService.register(data);setAccessToken(result...
+       |                                                                 ^
+    12 |   const logout=()=>{setAccessToken(null);setUser(null);sessionStorage.removeItem(SESSION_KEY)};
+    13 |   const value=useMemo(()=>({user,loading,login,register,logout,isAuthenticated:!!user}),[user,loading]);
+ > submit src/pages/auth/AuthPages.jsx:5:794
+
+[2m2:51:00 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled rejection] [1mAxiosError[22m: Network Error
+[39m > XMLHttpRequest.handleError node_modules/axios/lib/adapters/xhr.js:124:20
+ > Axios$1.request node_modules/axios/lib/core/Axios.js:46:40
+ > register src/context/AuthContext.jsx:11:64
+    9  |   useEffect(()=>{const clear=()=>{setUser(null);sessionStorage.removeItem(SESSION_KEY)};window.addEventListener('skill...
+    10 |   const login=async(data)=>{setLoading(true);try{const result=await authService.login(data);setAccessToken(result.acce...
+    11 |  ...st register=async(data)=>{setLoading(true);try{const result=await authService.register(data);setAccessToken(result...
+       |                                                                 ^
+    12 |   const logout=()=>{setAccessToken(null);setUser(null);sessionStorage.removeItem(SESSION_KEY)};
+    13 |   const value=useMemo(()=>({user,loading,login,register,logout,isAuthenticated:!!user}),[user,loading]);
+ > submit src/pages/auth/AuthPages.jsx:5:794
+
+[2m2:51:00 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled rejection] [1mAxiosError[22m: Network Error
+[39m > XMLHttpRequest.handleError node_modules/axios/lib/adapters/xhr.js:124:20
+ > Axios$1.request node_modules/axios/lib/core/Axios.js:46:40
+ > register src/context/AuthContext.jsx:11:64
+    9  |   useEffect(()=>{const clear=()=>{setUser(null);sessionStorage.removeItem(SESSION_KEY)};window.addEventListener('skill...
+    10 |   const login=async(data)=>{setLoading(true);try{const result=await authService.login(data);setAccessToken(result.acce...
+    11 |  ...st register=async(data)=>{setLoading(true);try{const result=await authService.register(data);setAccessToken(result...
+       |                                                                 ^
+    12 |   const logout=()=>{setAccessToken(null);setUser(null);sessionStorage.removeItem(SESSION_KEY)};
+    13 |   const value=useMemo(()=>({user,loading,login,register,logout,isAuthenticated:!!user}),[user,loading]);
+ > submit src/pages/auth/AuthPages.jsx:5:794
+
+[2m2:51:01 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled rejection] [1mAxiosError[22m: Network Error
+[39m > XMLHttpRequest.handleError node_modules/axios/lib/adapters/xhr.js:124:20
+ > Axios$1.request node_modules/axios/lib/core/Axios.js:46:40
+ > register src/context/AuthContext.jsx:11:64
+    9  |   useEffect(()=>{const clear=()=>{setUser(null);sessionStorage.removeItem(SESSION_KEY)};window.addEventListener('skill...
+    10 |   const login=async(data)=>{setLoading(true);try{const result=await authService.login(data);setAccessToken(result.acce...
+    11 |  ...st register=async(data)=>{setLoading(true);try{const result=await authService.register(data);setAccessToken(result...
+       |                                                                 ^
+    12 |   const logout=()=>{setAccessToken(null);setUser(null);sessionStorage.removeItem(SESSION_KEY)};
+    13 |   const value=useMemo(()=>({user,loading,login,register,logout,isAuthenticated:!!user}),[user,loading]);
+ > submit src/pages/auth/AuthPages.jsx:5:794
+
+[2m2:51:01 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled rejection] [1mAxiosError[22m: Network Error
+[39m > XMLHttpRequest.handleError node_modules/axios/lib/adapters/xhr.js:124:20
+ > Axios$1.request node_modules/axios/lib/core/Axios.js:46:40
+ > register src/context/AuthContext.jsx:11:64
+    9  |   useEffect(()=>{const clear=()=>{setUser(null);sessionStorage.removeItem(SESSION_KEY)};window.addEventListener('skill...
+    10 |   const login=async(data)=>{setLoading(true);try{const result=await authService.login(data);setAccessToken(result.acce...
+    11 |  ...st register=async(data)=>{setLoading(true);try{const result=await authService.register(data);setAccessToken(result...
+       |                                                                 ^
+    12 |   const logout=()=>{setAccessToken(null);setUser(null);sessionStorage.removeItem(SESSION_KEY)};
+    13 |   const value=useMemo(()=>({user,loading,login,register,logout,isAuthenticated:!!user}),[user,loading]);
+ > submit src/pages/auth/AuthPages.jsx:5:794
+
+[2m2:51:01 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled rejection] [1mAxiosError[22m: Network Error
+[39m > XMLHttpRequest.handleError node_modules/axios/lib/adapters/xhr.js:124:20
+ > Axios$1.request node_modules/axios/lib/core/Axios.js:46:40
+ > register src/context/AuthContext.jsx:11:64
+    9  |   useEffect(()=>{const clear=()=>{setUser(null);sessionStorage.removeItem(SESSION_KEY)};window.addEventListener('skill...
+    10 |   const login=async(data)=>{setLoading(true);try{const result=await authService.login(data);setAccessToken(result.acce...
+    11 |  ...st register=async(data)=>{setLoading(true);try{const result=await authService.register(data);setAccessToken(result...
+       |                                                                 ^
+    12 |   const logout=()=>{setAccessToken(null);setUser(null);sessionStorage.removeItem(SESSION_KEY)};
+    13 |   const value=useMemo(()=>({user,loading,login,register,logout,isAuthenticated:!!user}),[user,loading]);
+ > submit src/pages/auth/AuthPages.jsx:5:794
+
+[2m2:51:01 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled rejection] [1mAxiosError[22m: Network Error
+[39m > XMLHttpRequest.handleError node_modules/axios/lib/adapters/xhr.js:124:20
+ > Axios$1.request node_modules/axios/lib/core/Axios.js:46:40
+ > register src/context/AuthContext.jsx:11:64
+    9  |   useEffect(()=>{const clear=()=>{setUser(null);sessionStorage.removeItem(SESSION_KEY)};window.addEventListener('skill...
+    10 |   const login=async(data)=>{setLoading(true);try{const result=await authService.login(data);setAccessToken(result.acce...
+    11 |  ...st register=async(data)=>{setLoading(true);try{const result=await authService.register(data);setAccessToken(result...
+       |                                                                 ^
+    12 |   const logout=()=>{setAccessToken(null);setUser(null);sessionStorage.removeItem(SESSION_KEY)};
+    13 |   const value=useMemo(()=>({user,loading,login,register,logout,isAuthenticated:!!user}),[user,loading]);
+ > submit src/pages/auth/AuthPages.jsx:5:794
+
+[2m2:51:01 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled rejection] [1mAxiosError[22m: Network Error
+[39m > XMLHttpRequest.handleError node_modules/axios/lib/adapters/xhr.js:124:20
+ > Axios$1.request node_modules/axios/lib/core/Axios.js:46:40
+ > register src/context/AuthContext.jsx:11:64
+    9  |   useEffect(()=>{const clear=()=>{setUser(null);sessionStorage.removeItem(SESSION_KEY)};window.addEventListener('skill...
+    10 |   const login=async(data)=>{setLoading(true);try{const result=await authService.login(data);setAccessToken(result.acce...
+    11 |  ...st register=async(data)=>{setLoading(true);try{const result=await authService.register(data);setAccessToken(result...
+       |                                                                 ^
+    12 |   const logout=()=>{setAccessToken(null);setUser(null);sessionStorage.removeItem(SESSION_KEY)};
+    13 |   const value=useMemo(()=>({user,loading,login,register,logout,isAuthenticated:!!user}),[user,loading]);
+ > submit src/pages/auth/AuthPages.jsx:5:794
+
+[2m2:51:02 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled rejection] [1mAxiosError[22m: Network Error
+[39m > XMLHttpRequest.handleError node_modules/axios/lib/adapters/xhr.js:124:20
+ > Axios$1.request node_modules/axios/lib/core/Axios.js:46:40
+ > register src/context/AuthContext.jsx:11:64
+    9  |   useEffect(()=>{const clear=()=>{setUser(null);sessionStorage.removeItem(SESSION_KEY)};window.addEventListener('skill...
+    10 |   const login=async(data)=>{setLoading(true);try{const result=await authService.login(data);setAccessToken(result.acce...
+    11 |  ...st register=async(data)=>{setLoading(true);try{const result=await authService.register(data);setAccessToken(result...
+       |                                                                 ^
+    12 |   const logout=()=>{setAccessToken(null);setUser(null);sessionStorage.removeItem(SESSION_KEY)};
+    13 |   const value=useMemo(()=>({user,loading,login,register,logout,isAuthenticated:!!user}),[user,loading]);
+ > submit src/pages/auth/AuthPages.jsx:5:794
+
+[2m2:51:02 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled rejection] [1mAxiosError[22m: Network Error
+[39m > XMLHttpRequest.handleError node_modules/axios/lib/adapters/xhr.js:124:20
+ > Axios$1.request node_modules/axios/lib/core/Axios.js:46:40
+ > register src/context/AuthContext.jsx:11:64
+    9  |   useEffect(()=>{const clear=()=>{setUser(null);sessionStorage.removeItem(SESSION_KEY)};window.addEventListener('skill...
+    10 |   const login=async(data)=>{setLoading(true);try{const result=await authService.login(data);setAccessToken(result.acce...
+    11 |  ...st register=async(data)=>{setLoading(true);try{const result=await authService.register(data);setAccessToken(result...
+       |                                                                 ^
+    12 |   const logout=()=>{setAccessToken(null);setUser(null);sessionStorage.removeItem(SESSION_KEY)};
+    13 |   const value=useMemo(()=>({user,loading,login,register,logout,isAuthenticated:!!user}),[user,loading]);
+ > submit src/pages/auth/AuthPages.jsx:5:794
+
+[2m2:51:02 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled rejection] [1mAxiosError[22m: Network Error
+[39m > XMLHttpRequest.handleError node_modules/axios/lib/adapters/xhr.js:124:20
+ > Axios$1.request node_modules/axios/lib/core/Axios.js:46:40
+ > register src/context/AuthContext.jsx:11:64
+    9  |   useEffect(()=>{const clear=()=>{setUser(null);sessionStorage.removeItem(SESSION_KEY)};window.addEventListener('skill...
+    10 |   const login=async(data)=>{setLoading(true);try{const result=await authService.login(data);setAccessToken(result.acce...
+    11 |  ...st register=async(data)=>{setLoading(true);try{const result=await authService.register(data);setAccessToken(result...
+       |                                                                 ^
+    12 |   const logout=()=>{setAccessToken(null);setUser(null);sessionStorage.removeItem(SESSION_KEY)};
+    13 |   const value=useMemo(()=>({user,loading,login,register,logout,isAuthenticated:!!user}),[user,loading]);
+ > submit src/pages/auth/AuthPages.jsx:5:794
+
+[2m2:51:02 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled rejection] [1mAxiosError[22m: Network Error
+[39m > XMLHttpRequest.handleError node_modules/axios/lib/adapters/xhr.js:124:20
+ > Axios$1.request node_modules/axios/lib/core/Axios.js:46:40
+ > register src/context/AuthContext.jsx:11:64
+    9  |   useEffect(()=>{const clear=()=>{setUser(null);sessionStorage.removeItem(SESSION_KEY)};window.addEventListener('skill...
+    10 |   const login=async(data)=>{setLoading(true);try{const result=await authService.login(data);setAccessToken(result.acce...
+    11 |  ...st register=async(data)=>{setLoading(true);try{const result=await authService.register(data);setAccessToken(result...
+       |                                                                 ^
+    12 |   const logout=()=>{setAccessToken(null);setUser(null);sessionStorage.removeItem(SESSION_KEY)};
+    13 |   const value=useMemo(()=>({user,loading,login,register,logout,isAuthenticated:!!user}),[user,loading]);
+ > submit src/pages/auth/AuthPages.jsx:5:794
+
+[2m2:52:14 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled rejection] [1mAxiosError[22m: Network Error
+[39m > XMLHttpRequest.handleError node_modules/axios/lib/adapters/xhr.js:124:20
+ > Axios$1.request node_modules/axios/lib/core/Axios.js:46:40
+ > register src/context/AuthContext.jsx:11:64
+    9  |   useEffect(()=>{const clear=()=>{setUser(null);sessionStorage.removeItem(SESSION_KEY)};window.addEventListener('skill...
+    10 |   const login=async(data)=>{setLoading(true);try{const result=await authService.login(data);setAccessToken(result.acce...
+    11 |  ...st register=async(data)=>{setLoading(true);try{const result=await authService.register(data);setAccessToken(result...
+       |                                                                 ^
+    12 |   const logout=()=>{setAccessToken(null);setUser(null);sessionStorage.removeItem(SESSION_KEY)};
+    13 |   const value=useMemo(()=>({user,loading,login,register,logout,isAuthenticated:!!user}),[user,loading]);
+ > submit src/pages/auth/AuthPages.jsx:5:794
+
+[2m2:52:16 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled rejection] [1mAxiosError[22m: Network Error
+[39m > XMLHttpRequest.handleError node_modules/axios/lib/adapters/xhr.js:124:20
+ > Axios$1.request node_modules/axios/lib/core/Axios.js:46:40
+ > register src/context/AuthContext.jsx:11:64
+    9  |   useEffect(()=>{const clear=()=>{setUser(null);sessionStorage.removeItem(SESSION_KEY)};window.addEventListener('skill...
+    10 |   const login=async(data)=>{setLoading(true);try{const result=await authService.login(data);setAccessToken(result.acce...
+    11 |  ...st register=async(data)=>{setLoading(true);try{const result=await authService.register(data);setAccessToken(result...
+       |                                                                 ^
+    12 |   const logout=()=>{setAccessToken(null);setUser(null);sessionStorage.removeItem(SESSION_KEY)};
+    13 |   const value=useMemo(()=>({user,loading,login,register,logout,isAuthenticated:!!user}),[user,loading]);
+ > submit src/pages/auth/AuthPages.jsx:5:794
+
+[2m2:52:17 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled rejection] [1mAxiosError[22m: Network Error
+[39m > XMLHttpRequest.handleError node_modules/axios/lib/adapters/xhr.js:124:20
+ > Axios$1.request node_modules/axios/lib/core/Axios.js:46:40
+ > register src/context/AuthContext.jsx:11:64
+    9  |   useEffect(()=>{const clear=()=>{setUser(null);sessionStorage.removeItem(SESSION_KEY)};window.addEventListener('skill...
+    10 |   const login=async(data)=>{setLoading(true);try{const result=await authService.login(data);setAccessToken(result.acce...
+    11 |  ...st register=async(data)=>{setLoading(true);try{const result=await authService.register(data);setAccessToken(result...
+       |                                                                 ^
+    12 |   const logout=()=>{setAccessToken(null);setUser(null);sessionStorage.removeItem(SESSION_KEY)};
+    13 |   const value=useMemo(()=>({user,loading,login,register,logout,isAuthenticated:!!user}),[user,loading]);
+ > submit src/pages/auth/AuthPages.jsx:5:794
+
+[2m2:52:17 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled rejection] [1mAxiosError[22m: Network Error
+[39m > XMLHttpRequest.handleError node_modules/axios/lib/adapters/xhr.js:124:20
+ > Axios$1.request node_modules/axios/lib/core/Axios.js:46:40
+ > register src/context/AuthContext.jsx:11:64
+    9  |   useEffect(()=>{const clear=()=>{setUser(null);sessionStorage.removeItem(SESSION_KEY)};window.addEventListener('skill...
+    10 |   const login=async(data)=>{setLoading(true);try{const result=await authService.login(data);setAccessToken(result.acce...
+    11 |  ...st register=async(data)=>{setLoading(true);try{const result=await authService.register(data);setAccessToken(result...
+       |                                                                 ^
+    12 |   const logout=()=>{setAccessToken(null);setUser(null);sessionStorage.removeItem(SESSION_KEY)};
+    13 |   const value=useMemo(()=>({user,loading,login,register,logout,isAuthenticated:!!user}),[user,loading]);
+ > submit src/pages/auth/AuthPages.jsx:5:794
+
+[2m2:52:17 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled rejection] [1mAxiosError[22m: Network Error
+[39m > XMLHttpRequest.handleError node_modules/axios/lib/adapters/xhr.js:124:20
+ > Axios$1.request node_modules/axios/lib/core/Axios.js:46:40
+ > register src/context/AuthContext.jsx:11:64
+    9  |   useEffect(()=>{const clear=()=>{setUser(null);sessionStorage.removeItem(SESSION_KEY)};window.addEventListener('skill...
+    10 |   const login=async(data)=>{setLoading(true);try{const result=await authService.login(data);setAccessToken(result.acce...
+    11 |  ...st register=async(data)=>{setLoading(true);try{const result=await authService.register(data);setAccessToken(result...
+       |                                                                 ^
+    12 |   const logout=()=>{setAccessToken(null);setUser(null);sessionStorage.removeItem(SESSION_KEY)};
+    13 |   const value=useMemo(()=>({user,loading,login,register,logout,isAuthenticated:!!user}),[user,loading]);
+ > submit src/pages/auth/AuthPages.jsx:5:794
+
+[2m2:52:18 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled rejection] [1mAxiosError[22m: Network Error
+[39m > XMLHttpRequest.handleError node_modules/axios/lib/adapters/xhr.js:124:20
+ > Axios$1.request node_modules/axios/lib/core/Axios.js:46:40
+ > register src/context/AuthContext.jsx:11:64
+    9  |   useEffect(()=>{const clear=()=>{setUser(null);sessionStorage.removeItem(SESSION_KEY)};window.addEventListener('skill...
+    10 |   const login=async(data)=>{setLoading(true);try{const result=await authService.login(data);setAccessToken(result.acce...
+    11 |  ...st register=async(data)=>{setLoading(true);try{const result=await authService.register(data);setAccessToken(result...
+       |                                                                 ^
+    12 |   const logout=()=>{setAccessToken(null);setUser(null);sessionStorage.removeItem(SESSION_KEY)};
+    13 |   const value=useMemo(()=>({user,loading,login,register,logout,isAuthenticated:!!user}),[user,loading]);
+ > submit src/pages/auth/AuthPages.jsx:5:794
+
+[2m2:52:18 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled rejection] [1mAxiosError[22m: Network Error
+[39m > XMLHttpRequest.handleError node_modules/axios/lib/adapters/xhr.js:124:20
+ > Axios$1.request node_modules/axios/lib/core/Axios.js:46:40
+ > register src/context/AuthContext.jsx:11:64
+    9  |   useEffect(()=>{const clear=()=>{setUser(null);sessionStorage.removeItem(SESSION_KEY)};window.addEventListener('skill...
+    10 |   const login=async(data)=>{setLoading(true);try{const result=await authService.login(data);setAccessToken(result.acce...
+    11 |  ...st register=async(data)=>{setLoading(true);try{const result=await authService.register(data);setAccessToken(result...
+       |                                                                 ^
+    12 |   const logout=()=>{setAccessToken(null);setUser(null);sessionStorage.removeItem(SESSION_KEY)};
+    13 |   const value=useMemo(()=>({user,loading,login,register,logout,isAuthenticated:!!user}),[user,loading]);
+ > submit src/pages/auth/AuthPages.jsx:5:794
+
+[2m2:52:18 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled rejection] [1mAxiosError[22m: Network Error
+[39m > XMLHttpRequest.handleError node_modules/axios/lib/adapters/xhr.js:124:20
+ > Axios$1.request node_modules/axios/lib/core/Axios.js:46:40
+ > register src/context/AuthContext.jsx:11:64
+    9  |   useEffect(()=>{const clear=()=>{setUser(null);sessionStorage.removeItem(SESSION_KEY)};window.addEventListener('skill...
+    10 |   const login=async(data)=>{setLoading(true);try{const result=await authService.login(data);setAccessToken(result.acce...
+    11 |  ...st register=async(data)=>{setLoading(true);try{const result=await authService.register(data);setAccessToken(result...
+       |                                                                 ^
+    12 |   const logout=()=>{setAccessToken(null);setUser(null);sessionStorage.removeItem(SESSION_KEY)};
+    13 |   const value=useMemo(()=>({user,loading,login,register,logout,isAuthenticated:!!user}),[user,loading]);
+ > submit src/pages/auth/AuthPages.jsx:5:794
+
+[2m2:52:18 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled rejection] [1mAxiosError[22m: Network Error
+[39m > XMLHttpRequest.handleError node_modules/axios/lib/adapters/xhr.js:124:20
+ > Axios$1.request node_modules/axios/lib/core/Axios.js:46:40
+ > register src/context/AuthContext.jsx:11:64
+    9  |   useEffect(()=>{const clear=()=>{setUser(null);sessionStorage.removeItem(SESSION_KEY)};window.addEventListener('skill...
+    10 |   const login=async(data)=>{setLoading(true);try{const result=await authService.login(data);setAccessToken(result.acce...
+    11 |  ...st register=async(data)=>{setLoading(true);try{const result=await authService.register(data);setAccessToken(result...
+       |                                                                 ^
+    12 |   const logout=()=>{setAccessToken(null);setUser(null);sessionStorage.removeItem(SESSION_KEY)};
+    13 |   const value=useMemo(()=>({user,loading,login,register,logout,isAuthenticated:!!user}),[user,loading]);
+ > submit src/pages/auth/AuthPages.jsx:5:794
+
+[2m3:08:30 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mEncountered two children with the same key, `[object Object]`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.
+[2m3:08:30 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mEncountered two children with the same key, `[object Object]`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.
+[2m3:08:30 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled error] [1mError[22m: Objects are not valid as a React child (found: object with keys {id, created_at, updated_at, name, slug, category}). If you meant to render a collection of children, use an array instead.
+[39m > throwOnInvalidObjectTypeImpl node_modules/react-dom/cjs/react-dom-client.development.js:6099:12
+ > throwOnInvalidObjectType node_modules/react-dom/cjs/react-dom-client.development.js:6113:10
+ > reconcileChildFibersImpl node_modules/react-dom/cjs/react-dom-client.development.js:7058:10
+ > node_modules/react-dom/cjs/react-dom-client.development.js:7098:32
+ > reconcileChildren node_modules/react-dom/cjs/react-dom-client.development.js:9701:12
+ > beginWork node_modules/react-dom/cjs/react-dom-client.development.js:12049:12
+ > runWithFiberInDEV node_modules/react-dom/cjs/react-dom-client.development.js:871:29
+ > performUnitOfWork node_modules/react-dom/cjs/react-dom-client.development.js:17641:21
+ > workLoopSync node_modules/react-dom/cjs/react-dom-client.development.js:17469:40
+ > renderRootSync node_modules/react-dom/cjs/react-dom-client.development.js:17450:10
+
+[2m3:08:30 PM[22m [33m[1m[vite][22m[39m [33m[2m(client)[22m[39m [2m[console.warn] [22mAn error occurred in the <span> component.
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://react.dev/link/error-boundaries to learn more about error boundaries.
+
+[2m3:08:34 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mEncountered two children with the same key, `[object Object]`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.
+[2m3:08:34 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mEncountered two children with the same key, `[object Object]`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.
+[2m3:08:34 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled error] [1mError[22m: Objects are not valid as a React child (found: object with keys {id, created_at, updated_at, name, slug, category}). If you meant to render a collection of children, use an array instead.
+[39m > throwOnInvalidObjectTypeImpl node_modules/react-dom/cjs/react-dom-client.development.js:6099:12
+ > throwOnInvalidObjectType node_modules/react-dom/cjs/react-dom-client.development.js:6113:10
+ > reconcileChildFibersImpl node_modules/react-dom/cjs/react-dom-client.development.js:7058:10
+ > node_modules/react-dom/cjs/react-dom-client.development.js:7098:32
+ > reconcileChildren node_modules/react-dom/cjs/react-dom-client.development.js:9701:12
+ > beginWork node_modules/react-dom/cjs/react-dom-client.development.js:12049:12
+ > runWithFiberInDEV node_modules/react-dom/cjs/react-dom-client.development.js:871:29
+ > performUnitOfWork node_modules/react-dom/cjs/react-dom-client.development.js:17641:21
+ > workLoopSync node_modules/react-dom/cjs/react-dom-client.development.js:17469:40
+ > renderRootSync node_modules/react-dom/cjs/react-dom-client.development.js:17450:10
+
+[2m3:08:34 PM[22m [33m[1m[vite][22m[39m [33m[2m(client)[22m[39m [2m[console.warn] [22mAn error occurred in the <span> component.
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://react.dev/link/error-boundaries to learn more about error boundaries.
+
+[2m3:08:36 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mEncountered two children with the same key, `[object Object]`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.
+[2m3:08:36 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mEncountered two children with the same key, `[object Object]`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.
+[2m3:08:36 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled error] [1mError[22m: Objects are not valid as a React child (found: object with keys {id, created_at, updated_at, name, slug, category}). If you meant to render a collection of children, use an array instead.
+[39m > throwOnInvalidObjectTypeImpl node_modules/react-dom/cjs/react-dom-client.development.js:6099:12
+ > throwOnInvalidObjectType node_modules/react-dom/cjs/react-dom-client.development.js:6113:10
+ > reconcileChildFibersImpl node_modules/react-dom/cjs/react-dom-client.development.js:7058:10
+ > node_modules/react-dom/cjs/react-dom-client.development.js:7098:32
+ > reconcileChildren node_modules/react-dom/cjs/react-dom-client.development.js:9701:12
+ > beginWork node_modules/react-dom/cjs/react-dom-client.development.js:12049:12
+ > runWithFiberInDEV node_modules/react-dom/cjs/react-dom-client.development.js:871:29
+ > performUnitOfWork node_modules/react-dom/cjs/react-dom-client.development.js:17641:21
+ > workLoopSync node_modules/react-dom/cjs/react-dom-client.development.js:17469:40
+ > renderRootSync node_modules/react-dom/cjs/react-dom-client.development.js:17450:10
+
+[2m3:08:36 PM[22m [33m[1m[vite][22m[39m [33m[2m(client)[22m[39m [2m[console.warn] [22mAn error occurred in the <span> component.
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://react.dev/link/error-boundaries to learn more about error boundaries.
+
+[2m3:08:54 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mEncountered two children with the same key, `[object Object]`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.
+[2m3:08:54 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mEncountered two children with the same key, `[object Object]`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.
+[2m3:08:54 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled error] [1mError[22m: Objects are not valid as a React child (found: object with keys {id, created_at, updated_at, name, slug, category}). If you meant to render a collection of children, use an array instead.
+[39m > throwOnInvalidObjectTypeImpl node_modules/react-dom/cjs/react-dom-client.development.js:6099:12
+ > throwOnInvalidObjectType node_modules/react-dom/cjs/react-dom-client.development.js:6113:10
+ > reconcileChildFibersImpl node_modules/react-dom/cjs/react-dom-client.development.js:7058:10
+ > node_modules/react-dom/cjs/react-dom-client.development.js:7098:32
+ > reconcileChildren node_modules/react-dom/cjs/react-dom-client.development.js:9701:12
+ > beginWork node_modules/react-dom/cjs/react-dom-client.development.js:12049:12
+ > runWithFiberInDEV node_modules/react-dom/cjs/react-dom-client.development.js:871:29
+ > performUnitOfWork node_modules/react-dom/cjs/react-dom-client.development.js:17641:21
+ > workLoopSync node_modules/react-dom/cjs/react-dom-client.development.js:17469:40
+ > renderRootSync node_modules/react-dom/cjs/react-dom-client.development.js:17450:10
+
+[2m3:08:54 PM[22m [33m[1m[vite][22m[39m [33m[2m(client)[22m[39m [2m[console.warn] [22mAn error occurred in the <span> component.
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://react.dev/link/error-boundaries to learn more about error boundaries.
+
+[2m3:11:00 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mEncountered two children with the same key, `[object Object]`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.
+[2m3:11:00 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22mEncountered two children with the same key, `[object Object]`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.
+[2m3:11:00 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled error] [1mError[22m: Objects are not valid as a React child (found: object with keys {id, created_at, updated_at, name, slug, category}). If you meant to render a collection of children, use an array instead.
+[39m > throwOnInvalidObjectTypeImpl node_modules/react-dom/cjs/react-dom-client.development.js:6099:12
+ > throwOnInvalidObjectType node_modules/react-dom/cjs/react-dom-client.development.js:6113:10
+ > reconcileChildFibersImpl node_modules/react-dom/cjs/react-dom-client.development.js:7058:10
+ > node_modules/react-dom/cjs/react-dom-client.development.js:7098:32
+ > reconcileChildren node_modules/react-dom/cjs/react-dom-client.development.js:9701:12
+ > beginWork node_modules/react-dom/cjs/react-dom-client.development.js:12049:12
+ > runWithFiberInDEV node_modules/react-dom/cjs/react-dom-client.development.js:871:29
+ > performUnitOfWork node_modules/react-dom/cjs/react-dom-client.development.js:17641:21
+ > workLoopSync node_modules/react-dom/cjs/react-dom-client.development.js:17469:40
+ > renderRootSync node_modules/react-dom/cjs/react-dom-client.development.js:17450:10
+
+[2m3:11:00 PM[22m [33m[1m[vite][22m[39m [33m[2m(client)[22m[39m [2m[console.warn] [22mAn error occurred in the <span> component.
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://react.dev/link/error-boundaries to learn more about error boundaries.
+
+[2m8:58:03 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled rejection] [1mAxiosError[22m: Request failed with status code 401
+[39m > settle node_modules/axios/lib/core/settle.js:19:11
+ > XMLHttpRequest.onloadend node_modules/axios/lib/adapters/xhr.js:63:8
+ > Axios$1.request node_modules/axios/lib/core/Axios.js:46:40
+ > login src/context/AuthContext.jsx:10:61
+    8  |   const [loading,setLoading]=useState(false);
+    9  |   useEffect(()=>{const clear=()=>{setUser(null);sessionStorage.removeItem(SESSION_KEY)};window.addEventListener('skill...
+    10 |  ...const login=async(data)=>{setLoading(true);try{const result=await authService.login(data);setAccessToken(result.ac...
+       |                                                                 ^
+    11 |   const register=async(data)=>{setLoading(true);try{const result=await authService.register(data);setAccessToken(resul...
+    12 |   const logout=()=>{setAccessToken(null);setUser(null);sessionStorage.removeItem(SESSION_KEY)};
+ > submit src/pages/auth/AuthPages.jsx:4:564
+
+[2m8:58:07 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled rejection] [1mAxiosError[22m: Request failed with status code 401
+[39m > settle node_modules/axios/lib/core/settle.js:19:11
+ > XMLHttpRequest.onloadend node_modules/axios/lib/adapters/xhr.js:63:8
+ > Axios$1.request node_modules/axios/lib/core/Axios.js:46:40
+ > login src/context/AuthContext.jsx:10:61
+    8  |   const [loading,setLoading]=useState(false);
+    9  |   useEffect(()=>{const clear=()=>{setUser(null);sessionStorage.removeItem(SESSION_KEY)};window.addEventListener('skill...
+    10 |  ...const login=async(data)=>{setLoading(true);try{const result=await authService.login(data);setAccessToken(result.ac...
+       |                                                                 ^
+    11 |   const register=async(data)=>{setLoading(true);try{const result=await authService.register(data);setAccessToken(resul...
+    12 |   const logout=()=>{setAccessToken(null);setUser(null);sessionStorage.removeItem(SESSION_KEY)};
+ > submit src/pages/auth/AuthPages.jsx:4:564
+
+[2m8:58:19 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled rejection] [1mAxiosError[22m: Request failed with status code 401
+[39m > settle node_modules/axios/lib/core/settle.js:19:11
+ > XMLHttpRequest.onloadend node_modules/axios/lib/adapters/xhr.js:63:8
+ > Axios$1.request node_modules/axios/lib/core/Axios.js:46:40
+ > login src/context/AuthContext.jsx:10:61
+    8  |   const [loading,setLoading]=useState(false);
+    9  |   useEffect(()=>{const clear=()=>{setUser(null);sessionStorage.removeItem(SESSION_KEY)};window.addEventListener('skill...
+    10 |  ...const login=async(data)=>{setLoading(true);try{const result=await authService.login(data);setAccessToken(result.ac...
+       |                                                                 ^
+    11 |   const register=async(data)=>{setLoading(true);try{const result=await authService.register(data);setAccessToken(resul...
+    12 |   const logout=()=>{setAccessToken(null);setUser(null);sessionStorage.removeItem(SESSION_KEY)};
+ > submit src/pages/auth/AuthPages.jsx:4:564
+
+[2m9:01:16 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled rejection] [1mAxiosError[22m: Request failed with status code 401
+[39m > settle node_modules/axios/lib/core/settle.js:19:11
+ > XMLHttpRequest.onloadend node_modules/axios/lib/adapters/xhr.js:63:8
+ > Axios$1.request node_modules/axios/lib/core/Axios.js:46:40
+ > login src/context/AuthContext.jsx:10:61
+    8  |   const [loading,setLoading]=useState(false);
+    9  |   useEffect(()=>{const clear=()=>{setUser(null);sessionStorage.removeItem(SESSION_KEY)};window.addEventListener('skill...
+    10 |  ...const login=async(data)=>{setLoading(true);try{const result=await authService.login(data);setAccessToken(result.ac...
+       |                                                                 ^
+    11 |   const register=async(data)=>{setLoading(true);try{const result=await authService.register(data);setAccessToken(resul...
+    12 |   const logout=()=>{setAccessToken(null);setUser(null);sessionStorage.removeItem(SESSION_KEY)};
+ > submit src/pages/auth/AuthPages.jsx:4:564
+
+[2m9:02:47 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled rejection] [1mAxiosError[22m: Request failed with status code 401
+[39m > settle node_modules/axios/lib/core/settle.js:19:11
+ > XMLHttpRequest.onloadend node_modules/axios/lib/adapters/xhr.js:63:8
+ > Axios$1.request node_modules/axios/lib/core/Axios.js:46:40
+ > login src/context/AuthContext.jsx:10:61
+    8  |   const [loading,setLoading]=useState(false);
+    9  |   useEffect(()=>{const clear=()=>{setUser(null);sessionStorage.removeItem(SESSION_KEY)};window.addEventListener('skill...
+    10 |  ...const login=async(data)=>{setLoading(true);try{const result=await authService.login(data);setAccessToken(result.ac...
+       |                                                                 ^
+    11 |   const register=async(data)=>{setLoading(true);try{const result=await authService.register(data);setAccessToken(resul...
+    12 |   const logout=()=>{setAccessToken(null);setUser(null);sessionStorage.removeItem(SESSION_KEY)};
+ > submit src/pages/auth/AuthPages.jsx:4:564
+
+[2m9:02:49 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled rejection] [1mAxiosError[22m: Request failed with status code 401
+[39m > settle node_modules/axios/lib/core/settle.js:19:11
+ > XMLHttpRequest.onloadend node_modules/axios/lib/adapters/xhr.js:63:8
+ > Axios$1.request node_modules/axios/lib/core/Axios.js:46:40
+ > login src/context/AuthContext.jsx:10:61
+    8  |   const [loading,setLoading]=useState(false);
+    9  |   useEffect(()=>{const clear=()=>{setUser(null);sessionStorage.removeItem(SESSION_KEY)};window.addEventListener('skill...
+    10 |  ...const login=async(data)=>{setLoading(true);try{const result=await authService.login(data);setAccessToken(result.ac...
+       |                                                                 ^
+    11 |   const register=async(data)=>{setLoading(true);try{const result=await authService.register(data);setAccessToken(resul...
+    12 |   const logout=()=>{setAccessToken(null);setUser(null);sessionStorage.removeItem(SESSION_KEY)};
+ > submit src/pages/auth/AuthPages.jsx:4:564
+
+[2m9:02:50 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled rejection] [1mAxiosError[22m: Request failed with status code 401
+[39m > settle node_modules/axios/lib/core/settle.js:19:11
+ > XMLHttpRequest.onloadend node_modules/axios/lib/adapters/xhr.js:63:8
+ > Axios$1.request node_modules/axios/lib/core/Axios.js:46:40
+ > login src/context/AuthContext.jsx:10:61
+    8  |   const [loading,setLoading]=useState(false);
+    9  |   useEffect(()=>{const clear=()=>{setUser(null);sessionStorage.removeItem(SESSION_KEY)};window.addEventListener('skill...
+    10 |  ...const login=async(data)=>{setLoading(true);try{const result=await authService.login(data);setAccessToken(result.ac...
+       |                                                                 ^
+    11 |   const register=async(data)=>{setLoading(true);try{const result=await authService.register(data);setAccessToken(resul...
+    12 |   const logout=()=>{setAccessToken(null);setUser(null);sessionStorage.removeItem(SESSION_KEY)};
+ > submit src/pages/auth/AuthPages.jsx:4:564
+
+[2m9:14:16 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled rejection] [1mAxiosError[22m: Request failed with status code 401
+[39m > settle node_modules/axios/lib/core/settle.js:19:11
+ > XMLHttpRequest.onloadend node_modules/axios/lib/adapters/xhr.js:63:8
+ > Axios$1.request node_modules/axios/lib/core/Axios.js:46:40
+ > login src/context/AuthContext.jsx:10:61
+    8  |   const [loading,setLoading]=useState(false);
+    9  |   useEffect(()=>{const clear=()=>{setUser(null);sessionStorage.removeItem(SESSION_KEY)};window.addEventListener('skill...
+    10 |  ...const login=async(data)=>{setLoading(true);try{const result=await authService.login(data);setAccessToken(result.ac...
+       |                                                                 ^
+    11 |   const register=async(data)=>{setLoading(true);try{const result=await authService.register(data);setAccessToken(resul...
+    12 |   const logout=()=>{setAccessToken(null);setUser(null);sessionStorage.removeItem(SESSION_KEY)};
+ > submit src/pages/auth/AuthPages.jsx:4:564
+
+[2m9:15:29 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled rejection] [1mAxiosError[22m: Request failed with status code 401
+[39m > settle node_modules/axios/lib/core/settle.js:19:11
+ > XMLHttpRequest.onloadend node_modules/axios/lib/adapters/xhr.js:63:8
+
+[2m9:15:31 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled rejection] [1mAxiosError[22m: Request failed with status code 401
+[39m > settle node_modules/axios/lib/core/settle.js:19:11
+ > XMLHttpRequest.onloadend node_modules/axios/lib/adapters/xhr.js:63:8
+
+[2m9:16:24 PM[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled rejection] [1mAxiosError[22m: Request failed with status code 401
+[39m > settle node_modules/axios/lib/core/settle.js:19:11
+ > XMLHttpRequest.onloadend node_modules/axios/lib/adapters/xhr.js:63:8
+ > Axios$1.request node_modules/axios/lib/core/Axios.js:46:40
+ > login src/context/AuthContext.jsx:10:61
+    8  |   const [loading,setLoading]=useState(false);
+    9  |   useEffect(()=>{const clear=()=>{setUser(null);sessionStorage.removeItem(SESSION_KEY)};window.addEventListener('skill...
+    10 |  ...const login=async(data)=>{setLoading(true);try{const result=await authService.login(data);setAccessToken(result.ac...
+       |                                                                 ^
+    11 |   const register=async(data)=>{setLoading(true);try{const result=await authService.register(data);setAccessToken(resul...
+    12 |   const logout=()=>{setAccessToken(null);setUser(null);sessionStorage.removeItem(SESSION_KEY)};
+ > submit src/pages/auth/AuthPages.jsx:4:564
+
