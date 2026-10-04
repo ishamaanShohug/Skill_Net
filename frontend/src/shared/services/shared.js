@@ -19,7 +19,7 @@ export const jobService = {
   apply: (id, data = {}) => useMocks ? mockService.applyForJob(id) : unwrap(api.post(`/jobs/${id}/apply/`, data)),
 };
 export const courseService = {
-  getCourses: () => useMocks ? mockService.getCourses() : unwrapList(api.get('/courses/')).then((items) => items.map(normalizeCourse)),
+  getCourses: (params) => useMocks ? mockService.getCourses() : unwrapList(api.get('/courses/', { params })).then((items) => items.map(normalizeCourse)),
   getById: (id) => useMocks ? mockService.getCourseById(id) : unwrap(api.get(`/courses/${id}/`)).then(normalizeCourse),
   enroll: (id) => useMocks ? mockService.enrollCourse(id) : unwrap(api.post(`/courses/${id}/enroll/`)),
   update: (id, data) => unwrap(api.patch(`/courses/${id}/`, data)),

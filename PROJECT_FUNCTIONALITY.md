@@ -374,58 +374,54 @@ These reuse the shared notification and messaging interfaces described above, wh
 
 ## 9. Administrator dashboard
 
-### Overview — Prototype UI; analytics API available
+### Overview — Live
 
 Route: `/admin`
 
 The dashboard presents:
 
-- Total users
-- Active jobs
-- Applications
-- Course enrollments
-- Platform growth chart
-- User-role distribution
-- Moderation and approval queues
-- Outcome summary
+- Total users, active jobs, applications, and course enrollments (live totals, with a real month-over-month delta computed from the growth series)
+- Platform growth chart — real cumulative users/jobs/applications/hires for the last 6 calendar months, from `/admin/analytics/`
+- User-role distribution (seekers vs. employers)
+- Needs-attention queue — real open-report, pending-course, and unverified-employer counts, each linking through to the relevant management page
+- Outcome summary — real shortlisted/hired counts, assessment completion rate, and average course rating
+- Export report — downloads the current stats as a CSV
 
-The backend analytics endpoint returns live totals and popular jobs/courses, but the current dashboard charts and cards use demonstration values.
-
-### User management — Prototype
+### User management — Live
 
 Route: `/admin/users`
 
-The interface supports searching, role filtering, status display, user details, and a deactivate-account action. A dedicated administrator user-management API is not currently implemented.
+Searching, server-side role and active/inactive filtering, user details, activate/deactivate, and CSV export are all wired to `AdminUserViewSet` (`/admin/users/`).
 
-### Job moderation — Prototype
+### Job moderation — Live
 
 Route: `/admin/jobs`
 
-The interface displays jobs, companies, dates, publication status, report counts, and moderation actions. Dedicated admin moderation operations and audit recording still need to be exposed to the frontend.
+Server-side category and status filtering, a live report-count column (from `/admin/moderation-reports/`), viewing the public listing, publish/close toggling, removing a listing, and CSV export are all wired to `/jobs/`.
 
-### Course management — Prototype
+### Course management — Live
 
 Route: `/admin/courses`
 
-The interface displays provider, price, rating, status, preview, approval, and menu actions. Course approval/removal workflow endpoints are not yet implemented for this page.
+Search, server-side category and status filtering (including the `PENDING` approval queue), viewing the public listing, approve, remove, and CSV export are all wired to `/courses/`.
 
-### Reports and analytics — Prototype
+### Reports and analytics — Live
 
 Route: `/admin/reports`
 
-The page provides date, report-type, and region controls plus applications, hires, and category charts. Report filters and Download Report are not yet connected to a generated report endpoint.
+Applications/hires trend and top job categories are computed from live analytics and job data. Date range reflects the earliest/latest posted job. Download report exports a CSV of the growth series and category breakdown.
 
-### Moderation queue — Prototype
+### Moderation queue — Live
 
 Route: `/admin/moderation`
 
-The interface includes open/resolved/audit tabs, priority labels, report reasons, listing previews, dismiss actions, and listing removal. The `ModerationReport` database model exists, but API endpoints and frontend integration are not yet implemented.
+Open/Resolved/Audit-log tabs filter real `ModerationReport` records from `/admin/moderation-reports/`. Reports link through to the reported job or course listing. Dismiss and Remove listing call the `resolve` action and record who resolved each report.
 
-### Administrator notifications — Prototype UI; live API available
+### Administrator notifications — Live
 
 Route: `/admin/notifications`
 
-This reuses the shared notifications page. Backend notification operations exist, but the page is not yet connected.
+This reuses the shared notifications page, backed by the live `/notifications/` API.
 
 ## 10. Backend API functionality
 
@@ -513,18 +509,24 @@ All seeded demo accounts use the password `DemoPass123!`.
 | Course provider | `provider@skillnet.demo` |
 | Administrator | `admin@skillnet.demo` |
 
+The homepage/login page's "Demo access" buttons sign any visitor straight into the seeker/employer/admin accounts above — the same shared accounts for everyone who clicks them. To keep that safe:
+
+- Demo accounts cannot hard-delete jobs, courses, quizzes, or their own education/experience/certificate entries (`BlockDemoDelete` permission in `permissions.py`); everything else (creating, updating, applying, messaging, uploading a photo) still works.
+- Nobody — including the demo admin itself — can change a demo account's email, role, or active status through `/admin/users/<id>/`, so one visitor can't lock the next one out of a role.
+- `python manage.py reset_demo` wipes whatever drift visitors have added (extra jobs/courses, messages, applications, edited profile fields, uploaded photos, moderation reports) and reseeds the pristine baseline; it never touches accounts a real visitor registered for themselves. Setting `DEMO_RESET_ENABLED=true` (with `DEMO_RESET_INTERVAL_SECONDS`, default 4 hours) runs it automatically on a background thread under `runserver` — off by default so it never fires during tests or a normal dev session.
+
 ## 13. Remaining functionality checklist
 
 The job seeker dashboard is now fully connected end to end: profile (including education, experience, certificates, and skills CRUD), CV builder with PDF generation, my learning progress tracking, messages, and a live overview are all live.
 
 The employer dashboard is now fully connected end to end too: job CRUD, applicants (with Smart CV Shortlisting), status transitions, the quiz builder, messages/notifications, and the company profile (including logo upload) are all live.
 
+The administrator dashboard is now fully connected end to end too: overview analytics (including a real growth chart, needs-attention queue, and outcome snapshot), user management, job moderation, course management (including the pending-approval queue), reports, and the moderation queue are all live, with CSV export added for every table.
+
 To make every remaining visible dashboard control fully operational, the outstanding priorities are:
 
-1. Connect the administrator dashboard to live analytics.
-2. Add administrator APIs for user management, job/course moderation, and moderation reports.
-3. Add report generation/export for the administrator reports page.
-4. Connect a real payment gateway and payment callback flow for paid courses.
-5. Replace remaining visual-only filters, pagination, global search, and dashboard counters with live behavior.
+1. Connect a real payment gateway and payment callback flow for paid courses.
+2. Add a way for job seekers/employers to actually file a moderation report from the UI (the backend and admin review side are live; there is no "report this listing" button yet).
+3. Replace remaining visual-only filters, pagination, and global search with live behavior.
 
 This checklist represents the difference between the current implemented system and the complete behavior presented by every screen in the frontend.

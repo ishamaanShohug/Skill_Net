@@ -1,6 +1,8 @@
 import io
+from calendar import monthrange
+from datetime import date
 from django.db import transaction
-from django.db.models import Count,Q
+from django.db.models import Avg,Count,Q
 from django.http import HttpResponse
 from django.utils import timezone
 from rest_framework import generics,status,viewsets
@@ -59,15 +61,15 @@ class ProfileView(generics.RetrieveUpdateAPIView):
         return super().update(request,*args,**kwargs)
 
 class EducationViewSet(viewsets.ModelViewSet):
-    serializer_class=EducationSerializer;permission_classes=[IsJobSeeker]
+    serializer_class=EducationSerializer;permission_classes=[IsJobSeeker,BlockDemoDelete]
     def get_queryset(self):return Education.objects.filter(profile=self.request.user.seeker_profile).order_by('-start_date')
     def perform_create(self,serializer):serializer.save(profile=self.request.user.seeker_profile)
 class ExperienceViewSet(viewsets.ModelViewSet):
-    serializer_class=ExperienceSerializer;permission_classes=[IsJobSeeker]
+    serializer_class=ExperienceSerializer;permission_classes=[IsJobSeeker,BlockDemoDelete]
     def get_queryset(self):return Experience.objects.filter(profile=self.request.user.seeker_profile).order_by('-start_date')
     def perform_create(self,serializer):serializer.save(profile=self.request.user.seeker_profile)
 class CertificateViewSet(viewsets.ModelViewSet):
-    serializer_class=CertificateSerializer;permission_classes=[IsJobSeeker]
+    serializer_class=CertificateSerializer;permission_classes=[IsJobSeeker,BlockDemoDelete]
     def get_queryset(self):return Certificate.objects.filter(profile=self.request.user.seeker_profile).order_by('-issued_date')
     def perform_create(self,serializer):serializer.save(profile=self.request.user.seeker_profile)
 
@@ -88,7 +90,7 @@ class JobViewSet(viewsets.ModelViewSet):
     def get_permissions(self):
         if self.action in ['list','retrieve']:return [AllowAny()]
         if self.action=='apply':return [IsJobSeeker()]
-        return [IsEmployerOrAdmin()]
+        return [IsEmployerOrAdmin(),BlockDemoDelete()]
     def get_queryset(self):
         qs=Job.objects.select_related('employer','employer__user').prefetch_related('skills')
         if self.request.user.is_authenticated and self.request.user.role==User.Role.ADMIN:return qs
@@ -155,7 +157,7 @@ class QuizViewSet(viewsets.ModelViewSet):
         if self.request.user.is_authenticated and self.request.user.role==User.Role.EMPLOYER:return EmployerQuizSerializer
         return QuizSerializer
     def get_permissions(self):
-        if self.action in ['create','update','partial_update','destroy']:return [IsEmployer()]
+        if self.action in ['create','update','partial_update','destroy']:return [IsEmployer(),BlockDemoDelete()]
         if self.action=='submit':return [IsJobSeeker()]
         return [IsAuthenticated()]
     def create(self,request,*args,**kwargs):
@@ -189,7 +191,7 @@ class QuizViewSet(viewsets.ModelViewSet):
 
 class CourseViewSet(viewsets.ModelViewSet):
     serializer_class=CourseSerializer;filterset_fields=['category','status','skills'];search_fields=['title','description','skills__name'];ordering_fields=['created_at','rating','price']
-    def get_permissions(self):return [AllowAny()] if self.action in ['list','retrieve'] else [IsAuthenticated()]
+    def get_permissions(self):return [AllowAny()] if self.action in ['list','retrieve'] else [IsAuthenticated(),BlockDemoDelete()]
     def get_queryset(self):
         qs=Course.objects.prefetch_related('skills','modules').select_related('provider').order_by('-created_at')
         return qs if self.request.user.is_authenticated and self.request.user.role in [User.Role.COURSE_PROVIDER,User.Role.ADMIN] else qs.filter(status=Course.Status.PUBLISHED)
@@ -241,8 +243,14 @@ class AdminUserViewSet(viewsets.ModelViewSet):
     queryset=User.objects.all().order_by('-date_joined');serializer_class=AdminUserSerializer;permission_classes=[IsAdmin];filterset_fields=['role','is_active','is_verified'];search_fields=['email','first_name','last_name'];ordering_fields=['date_joined','email']
     def destroy(self,request,*args,**kwargs):
         return Response({'detail':'User records cannot be deleted through the platform API.'},status=405)
+    def update(self,request,*args,**kwargs):
+        # The three seeded demo accounts are what every "Demo access" click signs into — changing
+        # one's email, role, or active status here would lock every later visitor out of that role.
+        if is_demo_user(self.get_object()) and {'email','role','is_active'}&set(request.data):
+            return Response({'detail':'This is a shared demo account — its email, role, and active status are protected so every visitor can keep signing in.'},status=403)
+        return super().update(request,*args,**kwargs)
 class ModerationReportViewSet(viewsets.ModelViewSet):
-    serializer_class=ModerationReportSerializer;permission_classes=[IsAdmin];filterset_fields=['status','target_type'];ordering_fields=['created_at','updated_at']
+    serializer_class=ModerationReportSerializer;permission_classes=[IsAdmin,BlockDemoDelete];filterset_fields=['status','target_type'];ordering_fields=['created_at','updated_at']
     def get_queryset(self):return ModerationReport.objects.select_related('reporter','resolved_by').order_by('-created_at')
     def perform_create(self,serializer):serializer.save(reporter=self.request.user)
     @action(detail=True,methods=['post'])
@@ -258,7 +266,31 @@ def recommendations(request):
 @permission_classes([IsJobSeeker])
 def checkout(request):
     course=Course.objects.get(pk=request.data.get('course_id'),status=Course.Status.PUBLISHED);payment=Payment.objects.create(user=request.user,course=course,amount=course.price,provider='PENDING_GATEWAY');return Response({'payment_id':payment.id,'amount':payment.amount,'status':payment.status,'gateway_url':None},status=201)
+def _month_end_buckets(n=6):
+    """Last n calendar months (oldest first), each as the month's final date."""
+    today=timezone.now().date();buckets=[]
+    for i in range(n-1,-1,-1):
+        month=today.month-i;year=today.year
+        while month<=0:month+=12;year-=1
+        buckets.append(date(year,month,monthrange(year,month)[1]))
+    return buckets
 @api_view(['GET'])
 @permission_classes([IsAdmin])
 def analytics(request):
-    return Response({'users':{'total':User.objects.count(),'seekers':User.objects.filter(role=User.Role.JOB_SEEKER).count(),'employers':User.objects.filter(role=User.Role.EMPLOYER).count()},'jobs':{'total':Job.objects.count(),'active':Job.objects.filter(status=Job.Status.PUBLISHED).count()},'applications':{'total':Application.objects.count(),'hired':Application.objects.filter(status=Application.Status.HIRED).count()},'courses':{'total':Course.objects.count(),'enrollments':Enrollment.objects.count()},'popular_jobs':list(Job.objects.annotate(count=Count('applications')).order_by('-count').values('id','title','count')[:5]),'popular_courses':list(Course.objects.annotate(count=Count('enrollments')).order_by('-count').values('id','title','count')[:5])})
+    try:months=int(request.query_params.get('months',6))
+    except (TypeError,ValueError):months=6
+    months=months if months in (3,6,12) else 6
+    growth=[{'m':end.strftime('%b'),'users':User.objects.filter(date_joined__date__lte=end).count(),'jobs':Job.objects.filter(created_at__date__lte=end).count(),'applications':Application.objects.filter(created_at__date__lte=end).count(),'hires':Application.objects.filter(status=Application.Status.HIRED,updated_at__date__lte=end).count()} for end in _month_end_buckets(months)]
+    oldest_pending_course=Course.objects.filter(status=Course.Status.PENDING).order_by('created_at').first()
+    attempts=QuizAttempt.objects.filter(submitted_at__isnull=False).count();total_attempts=QuizAttempt.objects.count()
+    return Response({
+        'users':{'total':User.objects.count(),'seekers':User.objects.filter(role=User.Role.JOB_SEEKER).count(),'employers':User.objects.filter(role=User.Role.EMPLOYER).count()},
+        'jobs':{'total':Job.objects.count(),'active':Job.objects.filter(status=Job.Status.PUBLISHED).count()},
+        'applications':{'total':Application.objects.count(),'hired':Application.objects.filter(status=Application.Status.HIRED).count()},
+        'courses':{'total':Course.objects.count(),'enrollments':Enrollment.objects.count()},
+        'popular_jobs':list(Job.objects.annotate(count=Count('applications')).order_by('-count').values('id','title','count')[:5]),
+        'popular_courses':list(Course.objects.annotate(count=Count('enrollments')).order_by('-count').values('id','title','count')[:5]),
+        'growth':growth,
+        'moderation':{'open_reports':ModerationReport.objects.filter(status='OPEN').count(),'pending_courses':Course.objects.filter(status=Course.Status.PENDING).count(),'oldest_pending_course_days':(timezone.now().date()-oldest_pending_course.created_at.date()).days if oldest_pending_course else None,'unverified_employers':EmployerProfile.objects.filter(is_approved=False).count()},
+        'outcomes':{'shortlisted':Application.objects.filter(status=Application.Status.SHORTLISTED).count(),'hired':Application.objects.filter(status=Application.Status.HIRED).count(),'assessment_completion_rate':round(attempts/total_attempts*100,1) if total_attempts else 0,'avg_course_rating':round(Course.objects.filter(status=Course.Status.PUBLISHED).aggregate(avg=Avg('rating'))['avg'] or 0,1)},
+    })

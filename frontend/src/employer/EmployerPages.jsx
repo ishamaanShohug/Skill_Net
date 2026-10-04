@@ -50,7 +50,7 @@ function ApplicantTable({ items, onView, onAct, acting }) {
       {items.map((a) => (
         <div className="table-row" key={a.id}>
           <span className="person-cell">
-            <Avatar initials={initialsOf(a.candidate?.name)} />
+            <Avatar initials={initialsOf(a.candidate?.name)} seed={a.candidate?.id} gender="male" />
             <i>
               <strong>{a.candidate?.name || "Candidate"}</strong>
               <small>{a.candidate?.email}</small>
@@ -435,7 +435,7 @@ function CandidateCV({ application }) {
   const profile = application.candidate_profile;
   return (
     <div className="candidate-modal">
-      <Avatar initials={initialsOf(application.candidate?.name)} size="lg" />
+      <Avatar initials={initialsOf(application.candidate?.name)} seed={application.candidate?.id} gender="male" size="lg" />
       <h2>{application.candidate?.name || "Candidate"}</h2>
       <p>{profile?.headline || `Applied for ${application.jobTitle}`}</p>
       {profile?.location && (
@@ -530,7 +530,7 @@ function CompareModal({ applications, onClose }) {
         <div className="compare-grid">
           {applications.map((a) => (
             <div className="compare-column" key={a.id}>
-              <Avatar initials={initialsOf(a.candidate?.name)} size="lg" />
+              <Avatar initials={initialsOf(a.candidate?.name)} seed={a.candidate?.id} gender="male" size="lg" />
               <strong>{a.candidate?.name || "Candidate"}</strong>
               <FitBadge score={a.fit_score} knockedOut={a.knocked_out} />
               <ScoreBar label="Skills" value={a.breakdown?.skills} />
@@ -752,7 +752,7 @@ export function Applicants() {
               <div className={`ranked-row entry-list${a.knocked_out ? " knocked-out" : ""}`} key={a.id}>
                 <div>
                   <input type="checkbox" checked={selectedIds.includes(a.id)} onChange={() => toggleSelect(a.id)} />
-                  <Avatar initials={initialsOf(a.candidate?.name)} />
+                  <Avatar initials={initialsOf(a.candidate?.name)} seed={a.candidate?.id} gender="male" />
                   <FitBadge score={a.fit_score} knockedOut={a.knocked_out} />
                   <div>
                     <strong>{a.candidate?.name || "Candidate"}</strong>

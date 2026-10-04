@@ -2,7 +2,7 @@
 import api, { useMocks, unwrap, unwrapList } from '../shared/services/api';
 
 export const adminService = {
-  getAnalytics: () => useMocks ? Promise.resolve({}) : unwrap(api.get('/admin/analytics/')),
+  getAnalytics: (params) => useMocks ? Promise.resolve({}) : unwrap(api.get('/admin/analytics/', { params })),
   getUsers: (params) => unwrapList(api.get('/admin/users/', { params })),
   updateUser: (id, data) => unwrap(api.patch(`/admin/users/${id}/`, data)),
   getReports: (params) => unwrapList(api.get('/admin/moderation-reports/', { params })),

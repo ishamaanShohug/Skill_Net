@@ -35,6 +35,7 @@ import { jobService, notificationService, profileService, skillService } from ".
 import { formatMonth, formatRange } from "../shared/services/normalize";
 import { useAsync } from "../shared/hooks/useAsync";
 import {
+  Avatar,
   Badge,
   Button,
   CourseCard,
@@ -155,9 +156,13 @@ export function SeekerDashboard() {
           <div className="dash-job-list">
             {jobs?.slice(0, 3).map((j) => (
               <div key={j.id}>
-                <span className="company-logo" style={{ background: j.color }}>
-                  {j.logo}
-                </span>
+                {j.logoUrl ? (
+                  <img src={j.logoUrl} alt="" className="company-logo" style={{ objectFit: "cover" }} />
+                ) : (
+                  <span className="company-logo" style={j.logoStyle}>
+                    {j.logo}
+                  </span>
+                )}
                 <div>
                   <Link to={`/jobs/${j.id}`}>
                     <strong>{j.title}</strong>
@@ -440,11 +445,7 @@ export function Profile() {
       <div className="profile-layout">
         <aside className="profile-card">
           <div className="avatar-upload">
-            {profile.photo ? (
-              <img src={profile.photo} alt="" className="avatar avatar-xl" style={{ objectFit: "cover" }} />
-            ) : (
-              <div className="avatar avatar-xl">{initials}</div>
-            )}
+            <Avatar initials={initials} photo={profile.photo} seed={profile.user?.id} gender="male" size="xl" />
             <label className="edit-avatar">
               <Edit3 />
               <input

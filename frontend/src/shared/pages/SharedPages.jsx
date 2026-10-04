@@ -103,7 +103,7 @@ export function Messages() {
               const unread = countUnread([c], user?.id);
               return (
                 <button className={activeId === c.id ? "active" : ""} onClick={() => setActiveId(c.id)} key={c.id}>
-                  <Avatar initials={initialsOf(person?.name)} />
+                  <Avatar initials={initialsOf(person?.name)} seed={person?.id} />
                   <span>
                     <strong>{person?.name || "Conversation"}</strong>
                     <small>{last?.body || "No messages yet"}</small>
@@ -120,7 +120,7 @@ export function Messages() {
             {active ? (
               <>
                 <header>
-                  <Avatar initials={initialsOf(otherParticipant(active, user?.id)?.name)} />
+                  <Avatar initials={initialsOf(otherParticipant(active, user?.id)?.name)} seed={otherParticipant(active, user?.id)?.id} />
                   <div>
                     <strong>{otherParticipant(active, user?.id)?.name}</strong>
                     <small>{otherParticipant(active, user?.id)?.role?.replace("_", " ").toLowerCase()}</small>

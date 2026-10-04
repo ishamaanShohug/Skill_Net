@@ -19,10 +19,17 @@ import {
 } from "lucide-react";
 import { courseService, jobService } from "../shared/services/shared";
 import { useAsync } from "../shared/hooks/useAsync";
+
+// Demo photography for the homepage hero — a real candidate portrait to anchor
+// the "skill match" / "shortlisted" callouts layered on top of it.
+const HERO_IMAGE_URL = "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=900&q=60&auto=format&fit=crop";
 import {
+  Avatar,
   Badge,
   Button,
   CourseCard,
+  courseImageUrl,
+  demoAvatarUrl,
   EmptyState,
   ErrorState,
   JobCard,
@@ -70,9 +77,9 @@ export function Home() {
             </form>
             <div className="hero-proof">
               <div className="avatar-stack">
-                <i>NR</i>
-                <i>FA</i>
-                <i>MJ</i>
+                {["proof-nr", "proof-fa", "proof-mj"].map((seed) => (
+                  <i key={seed} style={{ backgroundImage: `url(${demoAvatarUrl(seed, 60)})`, backgroundSize: "cover" }} />
+                ))}
               </div>
               <span>
                 <strong>4,800+ people</strong> found their next step
@@ -83,6 +90,7 @@ export function Home() {
           <div className="hero-visual">
             <div className="portrait-card">
               <div className="portrait-person">
+                <img src={HERO_IMAGE_URL} alt="" />
                 <span>✓</span>
               </div>
               <div className="match-card">
@@ -296,7 +304,7 @@ export function Home() {
           </div>
           <div className="candidate-stack">
             <div>
-              <span className="avatar">NR</span>
+              <Avatar initials="IS" seed="ishamaan-shohug" />
               <div>
                 <strong>Ishamaan Shohug</strong>
                 <small>Product Designer</small>
@@ -304,7 +312,7 @@ export function Home() {
               <b>92% match</b>
             </div>
             <div>
-              <span className="avatar">FA</span>
+              <Avatar initials="FA" seed="farhan-ahmed" />
               <div>
                 <strong>Farhan Ahmed</strong>
                 <small>UX Designer</small>
@@ -312,7 +320,7 @@ export function Home() {
               <b>86% match</b>
             </div>
             <div>
-              <span className="avatar">MN</span>
+              <Avatar initials="MN" seed="maliha-noor" />
               <div>
                 <strong>Maliha Noor</strong>
                 <small>Junior Designer</small>
@@ -372,6 +380,7 @@ function FilterGroup({ title, options, selected, onToggle, empty }) {
   );
 }
 export function Jobs() {
+  const { user } = useAuth();
   const { data, loading, error } = useAsync(jobService.getJobs);
   const [query, setQuery] = useState(
     new URLSearchParams(location.search).get("q") || "",
@@ -434,6 +443,11 @@ export function Jobs() {
   const visible = filtered.slice((currentPage - 1) * JOBS_PER_PAGE, currentPage * JOBS_PER_PAGE);
   return (
     <div className="container page">
+      {user && (
+        <Link to={user.role === "ADMIN" ? "/admin" : user.role === "EMPLOYER" ? "/employer" : "/job-seeker"} className="back-link">
+          ← Back to dashboard
+        </Link>
+      )}
       <PageHeader
         eyebrow="FIND YOUR NEXT STEP"
         title="Jobs matched to real skills"
@@ -608,9 +622,13 @@ export function JobDetail() {
           ← Back to jobs
         </Link>
         <section className="job-detail-hero">
-          <div className="company-logo large" style={{ background: job.color }}>
-            {job.logo}
-          </div>
+          {job.logoUrl ? (
+            <img src={job.logoUrl} alt="" className="company-logo large" style={{ objectFit: "cover" }} />
+          ) : (
+            <div className="company-logo large" style={job.logoStyle}>
+              {job.logo}
+            </div>
+          )}
           <div>
             <p>{job.company}</p>
             <h1>{job.title}</h1>
@@ -806,6 +824,7 @@ export function CourseDetail() {
           </div>
           <div className="enroll-card">
             <div className={`course-art art-${course.image}`}>
+              <img src={courseImageUrl(course.image, 900)} alt="" />
               <span>{course.skill}</span>
             </div>
             <div>
