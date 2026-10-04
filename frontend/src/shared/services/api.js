@@ -41,3 +41,7 @@ api.interceptors.response.use((response) => response, async (error) => {
   return Promise.reject(error);
 });
 export default api;
+
+// Generic response helpers shared by every service module.
+export const unwrap = (promise) => promise.then((response) => response.data);
+export const unwrapList = (promise) => unwrap(promise).then((data) => Array.isArray(data) ? data : (data?.results || []));

@@ -27,7 +27,7 @@ class Skill(TimeStamped):
     def __str__(self): return self.name
 
 class SeekerProfile(TimeStamped):
-    user=models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,related_name='seeker_profile');headline=models.CharField(max_length=160,blank=True);summary=models.TextField(blank=True);address=models.CharField(max_length=255,blank=True);location=models.CharField(max_length=120,blank=True);latitude=models.DecimalField(max_digits=9,decimal_places=6,null=True,blank=True);longitude=models.DecimalField(max_digits=9,decimal_places=6,null=True,blank=True);photo=models.ImageField(upload_to='profiles/',blank=True);skills=models.ManyToManyField(Skill,blank=True)
+    user=models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,related_name='seeker_profile');headline=models.CharField(max_length=160,blank=True);summary=models.TextField(blank=True);address=models.CharField(max_length=255,blank=True);location=models.CharField(max_length=120,blank=True);portfolio_url=models.URLField(blank=True);latitude=models.DecimalField(max_digits=9,decimal_places=6,null=True,blank=True);longitude=models.DecimalField(max_digits=9,decimal_places=6,null=True,blank=True);photo=models.ImageField(upload_to='profiles/',blank=True);skills=models.ManyToManyField(Skill,blank=True)
 
 class EmployerProfile(TimeStamped):
     user=models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,related_name='employer_profile');company_name=models.CharField(max_length=180);industry=models.CharField(max_length=120,blank=True);website=models.URLField(blank=True);description=models.TextField(blank=True);location=models.CharField(max_length=120,blank=True);logo=models.ImageField(upload_to='companies/',blank=True);is_approved=models.BooleanField(default=False)
@@ -56,6 +56,10 @@ class AnswerOption(models.Model):
 class Application(TimeStamped):
     class Status(models.TextChoices): APPLIED='APPLIED','Applied';ASSESSMENT_PENDING='ASSESSMENT_PENDING','Assessment pending';UNDER_REVIEW='UNDER_REVIEW','Under review';SHORTLISTED='SHORTLISTED','Shortlisted';INTERVIEW='INTERVIEW','Interview';OFFER='OFFER','Offer';HIRED='HIRED','Hired';REJECTED='REJECTED','Rejected';WITHDRAWN='WITHDRAWN','Withdrawn'
     job=models.ForeignKey(Job,on_delete=models.CASCADE,related_name='applications');candidate=models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,related_name='applications');cover_letter=models.TextField(blank=True);status=models.CharField(max_length=25,choices=Status.choices,default=Status.APPLIED)
+    # Snapshot of the candidate's profile (headline/summary/skills/experience/education/certificates)
+    # and their chosen CV template/sections, both captured at apply time. Optional so older
+    # applications (and the apply flow itself) keep working without them.
+    cv_snapshot=models.JSONField(null=True,blank=True);cv_options=models.JSONField(null=True,blank=True)
     class Meta: constraints=[models.UniqueConstraint(fields=['job','candidate'],name='unique_job_application')]
 class ApplicationStatusHistory(models.Model):
     application=models.ForeignKey(Application,on_delete=models.CASCADE,related_name='status_history');status=models.CharField(max_length=25,choices=Application.Status.choices);note=models.TextField(blank=True);changed_by=models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.SET_NULL,null=True);created_at=models.DateTimeField(auto_now_add=True)

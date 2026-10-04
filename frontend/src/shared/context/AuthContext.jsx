@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
-import { authService } from '../services';
+import { authService } from '../services/shared';
 import { clearTokens,getRefreshToken,setTokens } from '../services/api';
 const AuthContext=createContext(null);
 const SESSION_KEY='skillnet_user';

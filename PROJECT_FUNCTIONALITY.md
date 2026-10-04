@@ -157,24 +157,24 @@ All role dashboards provide:
 - Signed-in user name and initials
 - Logout action
 
-The top search box and profile dropdown arrow are currently visual elements and do not perform a global search or open a menu.
+The user avatar/name in the top bar links to the signed-in user's own profile page (Job Seeker and Employer only — there is no Administrator profile page yet, so it's not clickable for that role). The top search box is still a visual element and does not perform a global search.
 
 ## 7. Job Seeker dashboard
 
-### Overview — Partial
+### Overview — Live
 
 Route: `/job-seeker`
 
 The overview contains:
 
-- Profile-completion presentation
-- Summary cards for applications, profile views, assessments, and courses
+- Profile-completion indicator, computed from the signed-in seeker's actual profile fields
+- Summary cards for active applications, profile strength, assessments taken (with average score), and courses in progress
 - Live recommended/latest jobs from the API
-- Recent activity presentation
-- Application-progress presentation
-- Course-progress presentation
+- Recent activity, sourced from the signed-in user's live notifications
+- Application-progress preview, sourced from the signed-in user's live applications
+- Course-progress card, sourced from the signed-in user's live enrollments
 
-Only the job list is currently live. Summary counts, activity, application preview, match percentages, and learning progress are demonstrational.
+All cards and panels are live. The per-job "match percentage" that previously appeared on job cards was removed, since no skill-matching endpoint exists to back it.
 
 ### Applications — Live
 
@@ -191,35 +191,30 @@ The page loads only the signed-in seeker's applications and displays:
 
 Backend application states include Applied, Assessment Pending, Under Review, Shortlisted, Interview, Offer, Hired, Rejected, and Withdrawn.
 
-### Profile — Prototype UI; backend profile API available
+### Profile — Live
 
 Route: `/job-seeker/profile`
 
 The interface covers:
 
-- Personal information
-- Professional headline and summary
-- Contact and location information
-- Education
-- Work experience
-- Skills
-- Certificates and document upload
-- Profile-completion indicator
+- Personal information (name, phone, headline, location, portfolio URL, summary), saved through the profile API
+- Education, work experience, and certificates, each with its own create/update/delete endpoint (`/api/profile/education/`, `/api/profile/experience/`, `/api/profile/certificates/`), scoped to the signed-in seeker
+- Skills, added or removed against the shared skills list and persisted to the profile
+- Certificate document upload (PDF/JPG/PNG)
+- Profile-completion indicator, computed from how many profile sections are filled in
 
-The backend can retrieve and update the core seeker profile, but the current page uses demonstration values and does not yet submit the form. Separate create/update endpoints are still needed for education, experience, and certificates.
-
-### CV builder — Prototype
+### CV builder — Live
 
 Route: `/job-seeker/cv`
 
 The UI allows the user to choose:
 
-- CV sections
+- CV sections to include
 - Accent colour
-- Template style
-- CV preview
+- Template style (modern or classic)
+- CV preview, rendered from the signed-in seeker's live profile data
 
-Generate CV and Download PDF currently show informational messages. There is no PDF-generation backend endpoint yet.
+Download PDF calls a backend PDF-generation endpoint (`POST /api/users/cv/`, built with ReportLab) that assembles the selected sections into a downloadable CV.
 
 ### Skills assessment — Live
 
@@ -255,19 +250,18 @@ Route: `/job-seeker/recommendations`
 
 The page loads published courses recommended from skills missed in the signed-in user's submitted assessments.
 
-### My learning — Partial
+### My learning — Live
 
 Route: `/job-seeker/learning`
 
-The designed page includes:
+The page includes:
 
 - Enrolled courses
-- Current course
+- Current course, selectable from the enrolled-courses list
 - Completion percentage
-- Completed-module count
-- Resume-course action
+- A module checklist with a "Mark complete" action per module
 
-The page loads the signed-in user's enrollments and stored progress fields. Completing modules and updating progress from the frontend are not yet implemented.
+Marking a module complete calls `POST /api/enrollments/:id/complete_module/`, which records the completed module, recalculates progress, flags the enrollment as completed once every module is done, and notifies the seeker.
 
 ### Notifications — Live
 
@@ -281,11 +275,11 @@ The backend supports:
 
 The page loads the signed-in user's notifications and persists both single-notification and mark-all read actions through the API.
 
-### Messages — Prototype UI; live API available
+### Messages — Live
 
 Route: `/job-seeker/messages`
 
-The backend can list conversations belonging to the user and add messages to a conversation. The current page uses fixed contacts and local messages, so messages typed in the UI are not yet persisted.
+The page loads the signed-in user's real conversations and messages, and persists messages typed in the UI through the API. A conversation between a candidate and the hiring employer is created automatically when the candidate applies to a job.
 
 ## 8. Employer dashboard
 
@@ -302,7 +296,7 @@ The overview presents:
 - Hiring funnel
 - Create-job shortcut
 
-The displayed metrics and recent applicants are currently demonstration data.
+The "Recent applicants" panel now loads the employer's real, most recent applicants from PostgreSQL. The stat cards (active-job/application/shortlisted counts) and hiring funnel are still demonstration data.
 
 ### Manage jobs — Live
 
@@ -334,101 +328,100 @@ The form covers:
 - Description and requirements
 - Required skills
 - Draft or published state
-- Optional assessment attachment
+- A link to attach or edit the job's assessment in the Quiz builder (available once the job has been saved)
 
 The form loads existing data when editing, retrieves selectable skills from the API, and saves a draft or publishes a job through PostgreSQL.
 
-### Applicants — Prototype UI; application API available
+### Applicants — Live (Smart CV Shortlisting)
 
 Route: `/employer/applicants`
 
-The interface includes:
+The employer picks one of their jobs, and the page calls `GET /api/jobs/:id/ranked-applicants/` to load every applicant scored and sorted by a transparent **fit score**:
 
-- Applicant search
-- Role filtering
-- Candidate details
-- Assessment scores
-- Skills
-- Send-message action
-- Move-to-interview action
+- **Fit score** = Skills × weight + Quiz × weight + Experience × weight (default 50/30/20, adjustable per search — weights don't need to sum to 100, they're normalized automatically). Computed deterministically in `backend/skillnet/scoring.py`, no external calls.
+  - Skills: the fraction of the job's required skills the candidate has.
+  - Quiz: the candidate's best submitted attempt for that application.
+  - Experience: years of relevant experience (current roles counted to today, capped) blended with keyword overlap between the job's title/requirements and the candidate's experience.
+  - If the job has no quiz, or required skills, or the candidate never attempted the quiz, that component is dropped (not scored as zero) and its weight is redistributed proportionally across the rest.
+- **Must-have skills**: the employer can mark specific required skills as non-negotiable. A candidate missing one is flagged `knocked_out` and ranked last — never auto-rejected, still visible and actionable.
+- Each result includes a plain-English explanation (e.g. "Matches 2/3 required skills, missing Communication; quiz 100%; 7.7 yrs relevant experience.") plus matched/missing skill lists.
+- A candidate CV view (headline, summary, location, skills, work experience, education, certificates, cover letter, quiz score, and the fit-score breakdown) loaded from the candidate's real profile and application data.
+- Status actions (Shortlist / Move to interview / Extend offer / Mark hired / Reject), a bulk mode (select multiple candidates to shortlist/reject/compare at once), and a side-by-side compare view — all persisting through the same status-update endpoint the seeker's Applications page reads from, and notifying the candidate.
+- A "Send message" action that opens the shared Messages page on the conversation automatically created for that application.
 
-The backend can list applications belonging to the employer's jobs and change an application's status while notifying the candidate. The page is not yet connected to those operations.
+When a seeker applies, the backend saves a snapshot of their profile (`cv_snapshot`) and their chosen CV template/sections (`cv_options`) onto the `Application` record, so scoring and CV review reflect what the candidate looked like at apply time rather than their possibly-since-edited profile. Both fields are optional — the apply flow, and scoring, work the same with or without them (scoring falls back to the candidate's live profile if no snapshot exists). Ranking is scoped to the signed-in employer's own jobs; backend ownership checks prevent viewing or ranking another employer's applicants.
 
-### Quiz builder — Prototype
+### Quiz builder — Live
 
-Route: `/employer/quizzes`
+Route: `/employer/quizzes` (optionally `?job=<id>` to preselect a job, e.g. from the job form)
 
-The interface supports adding/removing questions, editing question text, selecting correct answers, assigning marks, selecting a job, and displaying the pass mark. The backend currently exposes quizzes as read-only, so quiz/question/option creation endpoints must be added before Save can persist data.
+The interface supports adding/removing questions, editing question text and answer options, marking the correct option, assigning marks, choosing a skill per question, selecting which of the employer's jobs to attach the assessment to, and setting the pass mark and duration. Selecting a job that already has an assessment loads it for editing; selecting one without an assessment starts a blank quiz. Save persists the quiz (and fully replaces its questions on every save) through the API and attaches it to the selected job — each job can have at most one assessment. Only the employer who owns the job can create, edit, or delete its assessment.
 
-### Company profile — Prototype UI; backend profile API available
+### Company profile — Live
 
 Route: `/employer/profile`
 
-The page covers company name, website, industry, headquarters, description, and branding. The backend can retrieve and update the employer profile, but the current form is not connected.
+The page loads and saves the signed-in employer's real company profile: company name, website, industry, headquarters, description, and a logo upload — through the same profile endpoint the seeker's My Profile page uses (the backend branches by role). Approval status is shown next to the industry line.
 
-### Employer notifications and messages — Prototype UI; live APIs available
+### Employer notifications and messages — Live
 
 Routes:
 
 - `/employer/notifications`
 - `/employer/messages`
 
-These reuse the shared notification and messaging interfaces described above.
+These reuse the shared notification and messaging interfaces described above, which are now connected to the live APIs.
 
 ## 9. Administrator dashboard
 
-### Overview — Prototype UI; analytics API available
+### Overview — Live
 
 Route: `/admin`
 
 The dashboard presents:
 
-- Total users
-- Active jobs
-- Applications
-- Course enrollments
-- Platform growth chart
-- User-role distribution
-- Moderation and approval queues
-- Outcome summary
+- Total users, active jobs, applications, and course enrollments (live totals, with a real month-over-month delta computed from the growth series)
+- Platform growth chart — real cumulative users/jobs/applications/hires for the last 6 calendar months, from `/admin/analytics/`
+- User-role distribution (seekers vs. employers)
+- Needs-attention queue — real open-report, pending-course, and unverified-employer counts, each linking through to the relevant management page
+- Outcome summary — real shortlisted/hired counts, assessment completion rate, and average course rating
+- Export report — downloads the current stats as a CSV
 
-The backend analytics endpoint returns live totals and popular jobs/courses, but the current dashboard charts and cards use demonstration values.
-
-### User management — Prototype
+### User management — Live
 
 Route: `/admin/users`
 
-The interface supports searching, role filtering, status display, user details, and a deactivate-account action. A dedicated administrator user-management API is not currently implemented.
+Searching, server-side role and active/inactive filtering, user details, activate/deactivate, and CSV export are all wired to `AdminUserViewSet` (`/admin/users/`).
 
-### Job moderation — Prototype
+### Job moderation — Live
 
 Route: `/admin/jobs`
 
-The interface displays jobs, companies, dates, publication status, report counts, and moderation actions. Dedicated admin moderation operations and audit recording still need to be exposed to the frontend.
+Server-side category and status filtering, a live report-count column (from `/admin/moderation-reports/`), viewing the public listing, publish/close toggling, removing a listing, and CSV export are all wired to `/jobs/`.
 
-### Course management — Prototype
+### Course management — Live
 
 Route: `/admin/courses`
 
-The interface displays provider, price, rating, status, preview, approval, and menu actions. Course approval/removal workflow endpoints are not yet implemented for this page.
+Search, server-side category and status filtering (including the `PENDING` approval queue), viewing the public listing, approve, remove, and CSV export are all wired to `/courses/`.
 
-### Reports and analytics — Prototype
+### Reports and analytics — Live
 
 Route: `/admin/reports`
 
-The page provides date, report-type, and region controls plus applications, hires, and category charts. Report filters and Download Report are not yet connected to a generated report endpoint.
+Applications/hires trend and top job categories are computed from live analytics and job data. Date range reflects the earliest/latest posted job. Download report exports a CSV of the growth series and category breakdown.
 
-### Moderation queue — Prototype
+### Moderation queue — Live
 
 Route: `/admin/moderation`
 
-The interface includes open/resolved/audit tabs, priority labels, report reasons, listing previews, dismiss actions, and listing removal. The `ModerationReport` database model exists, but API endpoints and frontend integration are not yet implemented.
+Open/Resolved/Audit-log tabs filter real `ModerationReport` records from `/admin/moderation-reports/`. Reports link through to the reported job or course listing. Dismiss and Remove listing call the `resolve` action and record who resolved each report.
 
-### Administrator notifications — Prototype UI; live API available
+### Administrator notifications — Live
 
 Route: `/admin/notifications`
 
-This reuses the shared notifications page. Backend notification operations exist, but the page is not yet connected.
+This reuses the shared notifications page, backed by the live `/notifications/` API.
 
 ## 10. Backend API functionality
 
@@ -516,19 +509,24 @@ All seeded demo accounts use the password `DemoPass123!`.
 | Course provider | `provider@skillnet.demo` |
 | Administrator | `admin@skillnet.demo` |
 
+The homepage/login page's "Demo access" buttons sign any visitor straight into the seeker/employer/admin accounts above — the same shared accounts for everyone who clicks them. To keep that safe:
+
+- Demo accounts cannot hard-delete jobs, courses, quizzes, or their own education/experience/certificate entries (`BlockDemoDelete` permission in `permissions.py`); everything else (creating, updating, applying, messaging, uploading a photo) still works.
+- Nobody — including the demo admin itself — can change a demo account's email, role, or active status through `/admin/users/<id>/`, so one visitor can't lock the next one out of a role.
+- `python manage.py reset_demo` wipes whatever drift visitors have added (extra jobs/courses, messages, applications, edited profile fields, uploaded photos, moderation reports) and reseeds the pristine baseline; it never touches accounts a real visitor registered for themselves. Setting `DEMO_RESET_ENABLED=true` (with `DEMO_RESET_INTERVAL_SECONDS`, default 4 hours) runs it automatically on a background thread under `runserver` — off by default so it never fires during tests or a normal dev session.
+
 ## 13. Remaining functionality checklist
 
-To make every visible dashboard control fully operational, the remaining priorities are:
+The job seeker dashboard is now fully connected end to end: profile (including education, experience, certificates, and skills CRUD), CV builder with PDF generation, my learning progress tracking, messages, and a live overview are all live.
 
-1. Connect seeker profile forms and add CRUD endpoints for education, experience, and certificates.
-2. Replace the fixed quiz UI with live questions, application IDs, quiz IDs, and API answer submission.
-3. Connect recommendations, enrollments, progress tracking, notifications, and messages.
-4. Connect employer job CRUD, applicants, status transitions, messages, and company profile.
-5. Add employer quiz-builder CRUD endpoints and integrate the builder.
-6. Connect the administrator dashboard to live analytics.
-7. Add administrator APIs for user management, job/course moderation, and moderation reports.
-8. Add report generation/export and CV PDF generation.
-9. Connect a real payment gateway and payment callback flow for paid courses.
-10. Replace remaining visual-only filters, pagination, global search, and dashboard counters with live behavior.
+The employer dashboard is now fully connected end to end too: job CRUD, applicants (with Smart CV Shortlisting), status transitions, the quiz builder, messages/notifications, and the company profile (including logo upload) are all live.
+
+The administrator dashboard is now fully connected end to end too: overview analytics (including a real growth chart, needs-attention queue, and outcome snapshot), user management, job moderation, course management (including the pending-approval queue), reports, and the moderation queue are all live, with CSV export added for every table.
+
+To make every remaining visible dashboard control fully operational, the outstanding priorities are:
+
+1. Connect a real payment gateway and payment callback flow for paid courses.
+2. Add a way for job seekers/employers to actually file a moderation report from the UI (the backend and admin review side are live; there is no "report this listing" button yet).
+3. Replace remaining visual-only filters, pagination, and global search with live behavior.
 
 This checklist represents the difference between the current implemented system and the complete behavior presented by every screen in the frontend.

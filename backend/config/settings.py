@@ -8,6 +8,10 @@ load_dotenv(BASE_DIR/'.env')
 SECRET_KEY=os.getenv('DJANGO_SECRET_KEY','development-only-skillnet-key-change-before-production-2026')
 DEBUG=os.getenv('DJANGO_DEBUG','true').lower()=='true'
 ALLOWED_HOSTS=[x.strip() for x in os.getenv('DJANGO_ALLOWED_HOSTS','localhost,127.0.0.1').split(',') if x.strip()]
+# Off by default — opt in explicitly (e.g. on a public demo deployment) so a periodic
+# background thread never runs during tests, migrations, or a normal dev session.
+DEMO_RESET_ENABLED=os.getenv('DEMO_RESET_ENABLED','false').lower()=='true'
+DEMO_RESET_INTERVAL_SECONDS=int(os.getenv('DEMO_RESET_INTERVAL_SECONDS','14400'))
 INSTALLED_APPS=['django.contrib.admin','django.contrib.auth','django.contrib.contenttypes','django.contrib.sessions','django.contrib.messages','django.contrib.staticfiles','corsheaders','rest_framework','rest_framework_simplejwt.token_blacklist','django_filters','drf_spectacular','skillnet']
 MIDDLEWARE=['django.middleware.security.SecurityMiddleware','corsheaders.middleware.CorsMiddleware','django.contrib.sessions.middleware.SessionMiddleware','django.middleware.common.CommonMiddleware','django.middleware.csrf.CsrfViewMiddleware','django.contrib.auth.middleware.AuthenticationMiddleware','django.contrib.messages.middleware.MessageMiddleware','django.middleware.clickjacking.XFrameOptionsMiddleware']
 ROOT_URLCONF='config.urls'
